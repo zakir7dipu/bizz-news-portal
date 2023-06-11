@@ -1,0 +1,30 @@
+import React from 'react'
+import {Route, Routes} from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "./assets/css/owl.carousel.min.css";
+import "./assets/css/animate.min.css";
+import "./assets/css/magnific-popup.css";
+import "./assets/css/fontawesome-all.min.css";
+import "./assets/css/themify-icons.css";
+import "./assets/css/meanmenu.css";
+import "./assets/css/slick.css";
+import "./assets/css/style.css";
+
+import Main from "./layouts/Main.jsx";
+import Home from "./pages/Home.jsx";
+
+
+function App() {
+
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<Main/>}>
+                    <Route index element={<Home/>}/>
+                </Route>
+            </Routes>
+        </>
+    )
+}
+
+export default App
