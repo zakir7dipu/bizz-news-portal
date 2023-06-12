@@ -1,7 +1,7 @@
 import React from 'react';
 import BreakingNews from "../components/News/Breaking/"
 import HeroArea from "../components/News/Breaking/HeroArea.jsx";
-import TodaysNews from "../components/News/TodaysNews.jsx";
+import TrendyNews from "../components/News/TrendyNews";
 import CategoryNews from "../components/News/CategoryNews.jsx";
 import AdvertisementSection from "../components/Advertisement/Advertisement03.jsx";
 import PstSection from "../components/PST";
@@ -12,7 +12,7 @@ function Home(props) {
         <>
             <BreakingNews/>
             <HeroArea/>
-            <TodaysNews/>
+            <TrendyNews/>
             <CategoryNews/>
             <AdvertisementSection
                 image={AdvertisementImg}

@@ -3,8 +3,18 @@ import {Col, Container, Row} from "react-bootstrap";
 import moment from "moment/moment.js";
 import "moment/locale/bn.js"
 import banglaTarikh from "bangla-tarikh";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllBreakingNew} from "../../../features/BreakingNews/BreakingNewsSlice.js";
+import {Link} from "react-router-dom";
 
 function Index(props) {
+    const {isLoading, breakingNews, errorMessage} =useSelector(state => state.breakingNews)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(getAllBreakingNew())
+    },[])
+
     useEffect(()=>{
         $(".breaking__ticker-active").owlCarousel({
             loop: true,
@@ -51,21 +61,13 @@ function Index(props) {
                     <Col>
                         <div className="breaking__wrapper">
                             <h5 className="breaking__title ">তাজা খবর</h5>
-                            
-                            <ul className="breaking__ticker-active owl-carousel">
-                                <li>
-                                    <a href="#">On the other hand we denounce with righteous indignation and dislike men
-                                        who are so beguiled</a>
-                                </li>
-                                <li>
-                                    <a href="#">Trump’s Inaccurate Claims About High ways the world, Immigration and
-                                        Beyoncé.</a>
-                                </li>
-                                <li>
-                                    <a href="#">Moving From Buyer to Seller, Major League Soccer Revenue In The World
-                                        Wide.</a>
-                                </li>
-                            </ul>
+
+                            {!isLoading && <ul className="breaking__ticker-active owl-carousel">
+                                {breakingNews && breakingNews.map(brn=><li key={brn.id}>
+                                    <Link href="#">{brn.title}</Link>
+                                </li>)}
+                            </ul>}
+
                         </div>
                     </Col>
                 </Row>

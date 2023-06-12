@@ -12,6 +12,7 @@ import "./assets/css/style.css";
 
 import Main from "./layouts/Main.jsx";
 import Home from "./pages/Home.jsx";
+import Category from "./pages/Category.jsx";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Main/>}>
                     <Route index element={<Home/>}/>
+                    <Route path="collection/:slug" element={<Category/>}/>
                 </Route>
             </Routes>
         </>
