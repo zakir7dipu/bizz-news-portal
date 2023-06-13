@@ -11,7 +11,7 @@ const initialData = {
     errorMessage: null
 }
 
-export const getAllBreakingNew = createAsyncThunk("category/getAllBreakingNew", async (arg,{rejectWithValue}) => {
+export const getAllBreakingNew = createAsyncThunk("breakingNews/getAllBreakingNew", async (arg,{rejectWithValue}) => {
     try {
         const autAccess = {
             token: default_token,
