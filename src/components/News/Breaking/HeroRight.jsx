@@ -2,6 +2,7 @@ import React from 'react';
 import {Col, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {global} from "../../../library/config.js"
+import {isMobile} from 'react-device-detect';
 const {base_path} = global.config
 
 function HeroRight({newsData}) {
@@ -15,7 +16,8 @@ function HeroRight({newsData}) {
                             <div className="hero pos-relative mb-30">
                                 <div className="hero__thumb" data-overlay="dark-gradient">
                                     <Link to="#">
-                                        <img src={base_path+news.banner} alt="hero image"/>
+                                        {isMobile && <img src={base_path+news.banner} alt="hero image"/>}
+                                        {!isMobile && <img src={base_path+news.banner} alt="hero image" style={{width:'283px', height:'159px',objectFit:'cover',objectPosition:'center'}}/>}
                                     </Link>
                                 </div>
                                 <div className="hero__text hero__text-small">

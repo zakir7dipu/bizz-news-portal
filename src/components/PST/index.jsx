@@ -19,18 +19,10 @@ function Index(props) {
                 <Row>
                     <Col xl={9} lg={9} md={12}>
                         <Row>
-                            <PstContent
+                            {Array(20).fill().map((item, index)=><PstContent
+                                key={index}
                                 image={pstImg01}
-                            />
-                            <PstContent
-                                image={pstImg01}
-                            />
-                            <PstContent
-                                image={pstImg01}
-                            />
-                            <PstContent
-                                image={pstImg01}
-                            />
+                            />)}
                         </Row>
                     </Col>
                     <Col xl={3} lg={3} className="d-md-none d-lg-block">
