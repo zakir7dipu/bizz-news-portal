@@ -3,9 +3,7 @@ import Api from "../../library/api.js"
 
 const {access} = new Api()
 import {global} from "../../library/config.js"
-
 const {default_token} = global.config
-
 
 const initialData = {
     isLoading: true,
@@ -13,36 +11,38 @@ const initialData = {
     errorMessage: null
 }
 
-export const getAllCategoryNewsBDForHomePage = createAsyncThunk("categoryNews/getAllCategoryNewsBDForHomePage", async (data, {rejectWithValue}) => {
+export const getPopularNews = createAsyncThunk("popularNews/getPopularNews", async (data,{rejectWithValue})=> {
     try {
+        const {category} = data
         const autAccess = {
             token: default_token,
-            category_slug: data,
-            take: 1,
+            space: 'popular-posts',
+            category_slug: category,
+            take: 5
         }
         const res = await access.post("news", autAccess)
         return res.data;
-    } catch (e) {
+    } catch (err) {
         return rejectWithValue
     }
 })
 
-export const categoryNewsSlice = createSlice({
-    name: "categoryNews",
+export const popularNewsSlice = createSlice({
+    name: "popularNews",
     initialState: initialData,
     extraReducers: {
-        [getAllCategoryNewsBDForHomePage.pending]: (state) => {
+        [getPopularNews.pending]: (state) => {
             state.isLoading = true
         },
-        [getAllCategoryNewsBDForHomePage.fulfilled]: (state, {payload}) => {
+        [getPopularNews.fulfilled]: (state, {payload}) => {
             state.isLoading = false
-            state.news = payload.news[0]
+            state.news = payload.news
         },
-        [getAllCategoryNewsBDForHomePage.rejected]: (state, {payload}) => {
+        [getPopularNews.rejected]: (state, {payload}) => {
             state.isLoading = false
             state.errorMessage = payload
         }
     }
 })
 
-export default categoryNewsSlice.reducer
+export default popularNewsSlice.reducer;

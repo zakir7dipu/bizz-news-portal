@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {extraInfoAction, searchModelAction} from "../../features/MeanuBar/MenuSlice.js";
 import {getAllCategories} from "../../features/Category/CategorySlice.js";
@@ -15,7 +15,10 @@ function HeaderMenu(props) {
     },[dispatch])
 
     useEffect(() => {
-        // document.querySelector("[aria-current=page]").parentElement.className = "active";
+        // console.log(document.querySelector("[aria-current=page]"))
+        // if(document.querySelector("[aria-current=page]")) {
+        //     document.querySelector("[aria-current=page]").parentElement.classList.add('active');
+        // }
 
         window.addEventListener('scroll', (e) => {
             if (document.body.getBoundingClientRect().top < 245) {
@@ -23,6 +26,11 @@ function HeaderMenu(props) {
             } else {
                 stickyRefer.current.className = 'sticky'
             }
+        });
+
+        $("#mobile-menu").meanmenu({
+            meanMenuContainer: ".mobile-menu",
+            meanScreenWidth: "992"
         });
     })
 
@@ -48,8 +56,8 @@ function HeaderMenu(props) {
                         <div className="header__menu f-left">
                             <nav id="mobile-menu">
                                 <ul>
-                                    <li><NavLink to="/">সর্বশেষ</NavLink></li>
-                                    {categories && Array.from(categories).map(cat=><li key={cat.id}><NavLink to={`/collection/${cat.slug}`}>{cat.name}</NavLink></li>)}
+                                    <li className="headerMenu"><NavLink to="/">সর্বশেষ</NavLink></li>
+                                    {categories && Array.from(categories).map(cat=><li className="headerMenu" key={cat.id}><NavLink to={`/collection/${cat.slug}`}>{cat.name}</NavLink></li>)}
                                 </ul>
                             </nav>
                         </div>

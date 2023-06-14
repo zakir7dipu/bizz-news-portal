@@ -33,8 +33,13 @@ export const categorySlice = createSlice({
     reducers: {
         showAllCategories: (sate) => sate,
         showSingleCategory: (state, {payload})=> {
-            let category = state.categories.filter(cat=>cat.slug === payload)
-            state.singleCategory = category[0]
+            console.log(state)
+            let category = state.categories.filter(cat=>{
+                // cat.slug == payload
+                console.log(cat)
+            })
+
+            // state.singleCategory = category[0]
         }
     },
     extraReducers: {
