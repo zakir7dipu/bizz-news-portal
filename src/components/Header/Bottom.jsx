@@ -1,11 +1,6 @@
 import React, {useEffect} from 'react';
 import SiteFooterLogo from "../../assets/img/logo/footer-logo.png"
-import trendyHeroImage1 from "../../assets/img/trendy/xs/xs-1.jpg"
-import trendyHeroImage2 from "../../assets/img/trendy/xs/xs-2.jpg"
-import trendyHeroImage3 from "../../assets/img/trendy/xs/xs-3.jpg"
-import trendyHeroImage4 from "../../assets/img/trendy/xs/xs-4.jpg"
 import {Link, NavLink} from "react-router-dom";
-import {Button} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {extraInfoAction} from "../../features/MeanuBar/MenuSlice.js";
 import {showAllCategories} from "../../features/Category/CategorySlice.js";

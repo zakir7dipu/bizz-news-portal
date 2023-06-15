@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {showSingleCategory} from "../features/Category/CategorySlice.js";
 import {Container} from "react-bootstrap";
 import PageHeader from "../components/PageHeader";
-import PageTop from "../components/PageTop";
+import PageContent from "../components/PageContent";
 
 function Category(props) {
     const {slug} = useParams()
@@ -18,7 +18,7 @@ function Category(props) {
     return (
         !isLoading && <>
             <PageHeader name={category?.name} />
-            <PageTop/>
+            <PageContent category={category}/>
         </>
     );
 }
