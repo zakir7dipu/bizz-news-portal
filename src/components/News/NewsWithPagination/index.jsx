@@ -4,26 +4,37 @@ import {Link} from "react-router-dom";
 import pol6 from "../../../assets/img/politic/sm-pol1.jpg";
 import moment from "moment/moment";
 import {useDispatch, useSelector} from "react-redux";
-import {getNews, getNewsUsingPaginate} from "../../../features/News/NewsSlice.js";
+import {getNews} from "../../../features/News/NewsSlice.js";
 import {global} from "../../../library/config.js"
 import {getImage} from "../../../library/helper.js";
 const {base_path} = global.config
 
 function Index({categorySlug}) {
     const {isLoading, news, total_rows, total_pages} = useSelector(state => state.allNews)
-    console.log(news)
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState(1)
+    const [paginateItem, setPaginateItem] = useState(2)
+
+    const paginateAction = () => {
+        let data = {
+            paginate:paginateItem,
+            page:currentPage+1,
+            categorySlug: categorySlug
+        }
+        dispatch(getNews(data))
+    }
+
     useEffect(()=>{
         if(categorySlug) {
             let data = {
-                paginate:2,
+                paginate:paginateItem,
                 page:currentPage,
                 categorySlug: categorySlug
             }
             dispatch(getNews(data))
         }
     },[categorySlug])
+
     return (
         !isLoading && <Row className="pt-30">
             {news.map(item=>{
@@ -53,15 +64,10 @@ function Index({categorySlug}) {
                 )
             })}
             <Col sm={12} className="text-center">
-                {total_pages !== currentPage && <Button variant="light" onClick={e=>{
+                {total_rows !== news?.length && <Button variant="light" onClick={e=>{
                     e.preventDefault()
                     setCurrentPage(prevState => prevState+1)
-                    let data = {
-                        paginate:2,
-                        page:currentPage+1,
-                        categorySlug: categorySlug
-                    }
-                    getNewsUsingPaginate(data)
+                    paginateAction()
                 }}>আরও</Button>}
 
             </Col>

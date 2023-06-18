@@ -8,6 +8,7 @@ import PopularNewsReducer from "../features/PopularNews/PopularNewsSlice.js";
 import PriceSensitiveInformationReducer from "../features/PriceSensitiveInformation/PriceSensitiveInformationSlice.js";
 import HighlightedNewsReducer from "../features/HighlightedNews/HighlightedNewsSlice.js";
 import NewsReducer from "../features/News/NewsSlice.js";
+import SystemInfoReducer from "../features/SystemInformation/SystemInformationSlice.js";
 
 const store = configureStore({
     reducer: {
@@ -19,7 +20,8 @@ const store = configureStore({
         popularNews: PopularNewsReducer,
         PriceSensitiveInformation: PriceSensitiveInformationReducer,
         highlightedNews: HighlightedNewsReducer,
-        allNews: NewsReducer
+        allNews: NewsReducer,
+        systemInfoData: SystemInfoReducer,
     }
 })
 
