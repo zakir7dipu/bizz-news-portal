@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
-import SiteFooterLogo from "../../assets/img/logo/footer-logo.png"
 import {Link, NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {extraInfoAction} from "../../features/MeanuBar/MenuSlice.js";
 import {showAllCategories} from "../../features/Category/CategorySlice.js";
 import PopularNews from "../News/PopularNews";
+import {goToExternalLink, useInternalLink} from "../../library/helper.js";
 
-function Bottom(props) {
+function Bottom({socialLinkData, logo}) {
+    const {facebook, instagram, linkedin, skype, twitter} = socialLinkData
     const {isLoading, categories, errorMessage} = useSelector(state => state.category)
     const {extraInfo} = useSelector(state => state.menubar)
     const dispatch = useDispatch();
@@ -27,22 +28,34 @@ function Bottom(props) {
             </div>
             <div className="header__logo">
                 <Link to="/">
-                    <img src={SiteFooterLogo} alt="Header Logo"/>
+                    <img src={logo && useInternalLink(logo)} alt="Header Logo" style={{width: '180px'}}/>
                 </Link>
             </div>
             <div className="social-icon-right mt-30 mb-50">
-                <Link to="#">
-                    <i className="fab fa-facebook-f"></i>
-                </Link>
-                <Link to="#">
-                    <i className="fab fa-twitter"></i>
-                </Link>
-                <Link to="#">
-                    <i className="fab fa-google-plus-g"></i>
-                </Link>
-                <Link to="#">
-                    <i className="fab fa-instagram"></i>
-                </Link>
+                {facebook && <Link to="#" onClick={e=>{
+                    e.preventDefault()
+                    goToExternalLink(facebook)
+                }}><i className="fab fa-facebook-f"></i></Link>}
+
+                {instagram && <Link to="#" onClick={e=>{
+                    e.preventDefault()
+                    goToExternalLink(instagram)
+                }}><i className="fab fa-instagram"></i></Link>}
+
+                {twitter && <Link to="#" onClick={e=>{
+                    e.preventDefault()
+                    goToExternalLink(twitter)
+                }}><i className="fab fa-twitter"></i></Link>}
+
+                {linkedin && <Link to="#" onClick={e=>{
+                    e.preventDefault()
+                    goToExternalLink(linkedin)
+                }}><i className="fab fa-linkedin-in"></i></Link>}
+
+                {skype && <Link to="#" onClick={e=>{
+                    e.preventDefault()
+                    goToExternalLink(skype)
+                }}><i className="fab fa-skype"></i></Link>}
             </div>
             <div className="side-menu mb-30">
                 {!isLoading && <ul>
