@@ -1,9 +1,10 @@
 import React from 'react';
 import {Col, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {goToExternalLink} from "../../library/helper.js";
 
 function Top({socialLinkData}) {
-    const {} = socialLinkData
+    const {facebook, instagram, linkedin, skype, twitter} = socialLinkData
     return (
         <div className="header__top-area black-bg">
             <div className="container">
@@ -20,10 +21,30 @@ function Top({socialLinkData}) {
                     </Col>
                     <Col xl={6} lg={6} md={6}>
                         <div className="header__social text-center text-md-right mt-10">
-                            <Link to="#"><i className="fab fa-facebook-f"></i></Link>
-                            <Link to="#"><i className="fab fa-twitter"></i></Link>
-                            <Link to="#"><i className="fab fa-linkedin-in"></i></Link>
-                            <Link to="#"><i className="fab fa-google-plus-g"></i></Link>
+                            {facebook && <Link to="#" onClick={e=>{
+                                e.preventDefault()
+                                goToExternalLink(facebook)
+                            }}><i className="fab fa-facebook-f"></i></Link>}
+
+                            {instagram && <Link to="#" onClick={e=>{
+                                e.preventDefault()
+                                goToExternalLink(instagram)
+                            }}><i className="fab fa-instagram"></i></Link>}
+
+                            {twitter && <Link to="#" onClick={e=>{
+                                e.preventDefault()
+                                goToExternalLink(twitter)
+                            }}><i className="fab fa-twitter"></i></Link>}
+
+                            {linkedin && <Link to="#" onClick={e=>{
+                                e.preventDefault()
+                                goToExternalLink(linkedin)
+                            }}><i className="fab fa-linkedin-in"></i></Link>}
+
+                            {skype && <Link to="#" onClick={e=>{
+                                e.preventDefault()
+                                goToExternalLink(skype)
+                            }}><i className="fab fa-skype"></i></Link>}
                         </div>
                     </Col>
                 </Row>

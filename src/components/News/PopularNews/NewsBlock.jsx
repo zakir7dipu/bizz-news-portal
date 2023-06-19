@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import trendyHeroImage1 from "../../../assets/img/trendy/xs/xs-1.jpg";
 import {global} from "../../../library/config.js"
 import moment from "moment/moment.js";
 
