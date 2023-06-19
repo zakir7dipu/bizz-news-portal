@@ -4,12 +4,14 @@ import moment from "moment/moment.js";
 import "moment/locale/bn.js"
 
 import {global} from "../../../library/config.js"
+import TrendyNewsMidBgSkeleton from "../../UI/Skeletons/TrendyNewsMidBgSkeleton.jsx";
 const {base_path} = global.config
 
 function TrendyNewsMidBg({newsData}) {
     const {isLoading, data} = newsData
     return (
         <>
+            {isLoading && <TrendyNewsMidBgSkeleton card={2} />}
             {!isLoading && <div className="col-40">
                 {data.map(tnmbg=>{
                     return (
