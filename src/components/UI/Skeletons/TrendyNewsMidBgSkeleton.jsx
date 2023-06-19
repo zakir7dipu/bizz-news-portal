@@ -7,7 +7,7 @@ function TrendyNewsMidBgSkeleton({card}) {
             {Array(card).fill(0).map((item, index) => {
                 return <div className="postbox mb-25" key={index}>
                     <div className="postbox__thumb">
-                        <Skeleton height={250} width={475}/>
+                        <Skeleton height={250}/>
                     </div>
                     <div className="postbox__text pt-10">
                         <div className="postbox__text-meta pb-10">

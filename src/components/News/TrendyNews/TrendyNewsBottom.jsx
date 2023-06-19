@@ -5,12 +5,14 @@ import moment from "moment/moment.js";
 import "moment/locale/bn.js"
 
 import {global} from "../../../library/config.js"
+import TrendyNewsBottomSkeleton from "../../UI/Skeletons/TrendyNewsBottomSkeleton.jsx";
 const {base_path} = global.config
 
 function TrendyNewsBottom({newsData}) {
     const {isLoading, data} = newsData
     return (
         <Row>
+            {isLoading && <TrendyNewsBottomSkeleton card={8}/>}
             {!isLoading && data.map(tnb=>{
                 return (
                     <Col xl={3} ld={3} md={6} sm={12} key={tnb.slug}>

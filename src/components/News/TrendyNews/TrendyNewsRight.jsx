@@ -8,13 +8,15 @@ import moment from "moment/moment.js";
 import "moment/locale/bn.js"
 
 import {global} from "../../../library/config.js"
+import TrendyNewsLeftSkeleton from "../../UI/Skeletons/TrendyNewsLeftSkeleton.jsx";
 const {base_path} = global.config
 
 function TrendyNewsRight({newsData}) {
     const {isLoading, data} = newsData
     return (
         <>
-            {!isLoading && <div className="col-20 ">
+            {isLoading && <TrendyNewsLeftSkeleton card={3}/>}
+            {!isLoading && <div className="col-20">
                 {data.map(tnr=>{
                     return (
                         <div className="postbox mb-25" key={tnr.slug}>

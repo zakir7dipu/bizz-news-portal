@@ -7,8 +7,9 @@ function TrendyNewsLeftSkeleton({card}) {
             {Array(card).fill(0).map((item, index) => {
                 return <div className="postbox mb-25" key={index}>
                     <div className="postbox__thumb">
-                        <Skeleton height={128} width={228}/>
+                        <Skeleton height={128}/>
                     </div>
+
                     <div className="postbox__text pt-10">
                         <div className="postbox__text-meta pb-10">
                             <Skeleton width={100}/>
@@ -17,6 +18,7 @@ function TrendyNewsLeftSkeleton({card}) {
                             <Skeleton count={1}/>
                         </h4>
                     </div>
+
                 </div>
             })}
         </div>
