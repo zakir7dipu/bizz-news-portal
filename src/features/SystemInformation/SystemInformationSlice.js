@@ -27,6 +27,9 @@ export const getSystemInfo = createAsyncThunk("systemInfo/getSystemInfo", async 
 export const systemInfoSlice = createSlice({
     name: 'systemInfo',
     initialState: initialData,
+    reducers: {
+        getData: (state)=>state
+    },
     extraReducers: {
         [getSystemInfo.pending]: (state) => {
             state.systemInfoIsLoading = true
@@ -35,11 +38,11 @@ export const systemInfoSlice = createSlice({
             state.systemInfoIsLoading = false
             state.systemInfo = payload.system_information
         },
-        [getSystemInfo.fulfilled]: (state, {payload}) => {
+        [getSystemInfo.rejected]: (state, {payload}) => {
             state.systemInfoIsLoading = false
             state.systemInfoErrorMessage = payload
         }
     }
 })
-
+export const {getData} = systemInfoSlice.actions
 export default systemInfoSlice.reducer

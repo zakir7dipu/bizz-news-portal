@@ -2,7 +2,8 @@ import React from 'react';
 import {Col, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
-function Top(props) {
+function Top({socialLinkData}) {
+    const {} = socialLinkData
     return (
         <div className="header__top-area black-bg">
             <div className="container">
