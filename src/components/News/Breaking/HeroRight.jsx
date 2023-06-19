@@ -3,12 +3,14 @@ import {Col, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {global} from "../../../library/config.js"
 import {isMobile} from 'react-device-detect';
+import HeroRightSkeleton from "../../UI/Skeletons/HeroRightSkeleton.jsx";
 const {base_path} = global.config
 
 function HeroRight({newsData}) {
     const {isLoading, data} = newsData
     return (
         <Col lg={6} md={12}>
+            {isLoading && <HeroRightSkeleton card={4}/>}
             <Row>
                 {!isLoading && data.map(news=>{
                     return (

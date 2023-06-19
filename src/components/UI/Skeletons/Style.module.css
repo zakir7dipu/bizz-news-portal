@@ -1,0 +1,27 @@
+.leftHeroTitle{
+    font-size: 1rem;
+    line-height: 1.3rem;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.65);
+    background: linear-gradient(to bottom, #FFFFFF 0%, var(--primary) 20%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.mbt30{
+    margin-top: 30px;
+}
+
+.heroText {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px 28px;
+}
+
+.rightHeroTitle{
+    font-size: 16px;
+    margin: 0;
+    font-weight: 500;
+    padding-right: 0!important;
+    background: black;
+}
