@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getNews} from "../../../features/News/NewsSlice.js";
 import {global} from "../../../library/config.js"
 import {getImage} from "../../../library/helper.js";
+import CollectionBottomSkeleton from "../../UI/Skeletons/Collection/CollectionBottomSkeleton.jsx";
 const {base_path} = global.config
 
 function Index({categorySlug}) {
@@ -36,8 +37,9 @@ function Index({categorySlug}) {
     },[categorySlug])
 
     return (
-        !isLoading && <Row className="pt-30">
-            {news.map(item=>{
+        <Row className="pt-30">
+            {isLoading && <CollectionBottomSkeleton card={6}/>}
+            {!isLoading &&  news.map(item=>{
                 return (
                     <Col xl={4} lg={6} md={6} key={item.slug}>
                         <div className="postbox mb-30">
