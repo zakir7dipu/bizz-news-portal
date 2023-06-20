@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import CategoryNewsImg1 from "../../../assets/img/cat/cat1.jpg";
 import moment from "moment/moment.js";
 import "moment/locale/bn.js"
@@ -41,13 +41,13 @@ function NewsSm({slug}) {
                     return (
                         <div className="post__small mb-30" key={item.slug}>
                             <div className="post__small-thumb f-left">
-                                <Link to="#">
+                                <NavLink to={`/article/${item.slug}`}>
                                     <img src={base_path+item?.banner} alt="hero image" style={{width:'100px', height:'85px', objectFit:'cover', objectPosition:'center'}}/>
-                                </Link>
+                                </NavLink>
                             </div>
                             <div className="post__small-text fix pl-10">
                                 <h4 className="title-16 pr-0 mt-0">
-                                    <Link to="#">{item?.title}</Link>
+                                    <NavLink to={`/article/${item.slug}`}>{item?.title}</NavLink>
                                 </h4>
                                 <div className="post__small-text-meta">
                                     <ul>

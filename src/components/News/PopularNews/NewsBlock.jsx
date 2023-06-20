@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {global} from "../../../library/config.js"
 import moment from "moment/moment.js";
 
@@ -10,17 +10,17 @@ function NewsBlock({metaInfo}) {
     return (
         <div className="post__small mb-20">
             <div className="post__small-thumb f-left">
-                <Link to="#">
+                <NavLink to={`/article/${slug}`}>
                     <img src={base_path + banner} alt="hero image"
                          style={{width: '90px', height: '76px', objectFit: 'cover', objectPosition: 'center'}}/>
-                </Link>
+                </NavLink>
             </div>
             <div className="post__small-text fix pl-10">
                             <span className="sm-cat">
-                                <Link to="#">{category.name}</Link>
+                                <NavLink to={`/collection/${category.slug}`}>{category.name}</NavLink>
                             </span>
                 <h4 className="title-13 pr-0">
-                    <Link to="#">{title}</Link>
+                    <NavLink to={`/article/${slug}`}>{title}</NavLink>
                 </h4>
                 <div className="post__small-text-meta">
                     <ul>

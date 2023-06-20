@@ -1,6 +1,6 @@
 import React from 'react';
 import {Col, Row} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import moment from "moment/moment.js";
 import "moment/locale/bn.js"
 
@@ -18,9 +18,9 @@ function TrendyNewsBottom({newsData}) {
                     <Col xl={3} ld={3} md={6} sm={12} key={tnb.slug}>
                         <div className="postbox mb-25">
                             <div className="postbox__thumb">
-                                <Link to="#">
+                                <NavLink to={`/article/${tnb.slug}`}>
                                     <img src={base_path+tnb.banner} alt="hero image"/>
-                                </Link>
+                                </NavLink>
                             </div>
                             <div className="postbox__text pt-10">
                                 <div className="postbox__text-meta pb-10">
@@ -32,7 +32,7 @@ function TrendyNewsBottom({newsData}) {
                                     </ul>
                                 </div>
                                 <h4 className="pr-0">
-                                    <Link to="#">{tnb.title}</Link>
+                                    <NavLink to={`/article/${tnb.slug}`}>{tnb.title}</NavLink>
                                 </h4>
                             </div>
                         </div>

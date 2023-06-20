@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import moment from "moment/moment.js";
 import "moment/locale/bn.js"
 
@@ -17,9 +17,9 @@ function TrendyNewsLeft({trendyNewsData}) {
                     return (
                         <div className="postbox mb-25" key={tnl.slug}>
                             <div className="postbox__thumb">
-                                <Link to="#">
+                                <NavLink to={`/article/${tnl.slug}`}>
                                     <img src={base_path+tnl.banner} alt="hero image"/>
-                                </Link>
+                                </NavLink>
                             </div>
                             <div className="postbox__text pt-10">
                                 <div className="postbox__text-meta pb-10">
@@ -31,7 +31,7 @@ function TrendyNewsLeft({trendyNewsData}) {
                                     </ul>
                                 </div>
                                 <h4 className="pr-0">
-                                    <Link to="#">{tnl.title}</Link>
+                                    <NavLink to={`/article/${tnl.slug}`}>{tnl.title}</NavLink>
                                 </h4>
                             </div>
                         </div>

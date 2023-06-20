@@ -11,23 +11,37 @@ const initialData = {
     news: [],
     total_rows: 0,
     total_pages: 1,
-    errorMessage: null
+    errorMessage: null,
+    metaInfo: []
 }
 
 export const getNews = createAsyncThunk("news/getNews", async (data, {rejectWithValue}) => {
     try {
-        const {paginate, page, categorySlug} = data
+        const {paginate, page, categorySlug, excludeNews} = data;
         const autAccess = {
             token: default_token,
             category_slug: categorySlug,
             paginate: paginate,
             page: page,
-            exclude_space: 'category-highlighted-news'
+            exclude_space: 'category-highlighted-news',
+            exclude_news: excludeNews
         }
         const res = await access.post("news", autAccess)
         return res.data;
     } catch (e) {
         return rejectWithValue
+    }
+})
+
+export const fetchNewsBySlug = createAsyncThunk("news/fetchNewsBySlug", async (news, {rejectedWithValue}) => {
+    try {
+        const autAccess = {
+            token: default_token,
+        }
+        const res = await access.post(`news-details/${news}`, autAccess)
+        return res.data
+    } catch (error) {
+        return rejectedWithValue(error.response.message)
     }
 })
 
@@ -51,7 +65,18 @@ export const newsSlice = createSlice({
         [getNews.rejected]: (state, {payload}) => {
             state.isLoading = false
             state.errorMessage = payload
-        }
+        },
+        [fetchNewsBySlug.pending]: (state) => {
+            state.isLoading = true
+        },
+        [fetchNewsBySlug.fulfilled]: (state, {payload}) => {
+            state.isLoading = false;
+            state.metaInfo = payload;
+        },
+        [fetchNewsBySlug.rejected]: (state, {payload}) => {
+            state.isLoading = false;
+            state.message = payload;
+        },
     }
 })
 

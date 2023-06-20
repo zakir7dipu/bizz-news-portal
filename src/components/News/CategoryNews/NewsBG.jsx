@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import CategoryNewsImg1 from "../../../assets/img/cat/cat1.jpg";
 import moment from "moment/moment.js";
 import "moment/locale/bn.js"
@@ -36,13 +36,13 @@ function NewsBg({slug}) {
         !isLoading && <>
             {news && <div className="postbox mb-25">
                 <div className="postbox__thumb">
-                    <Link to="#">
+                    <NavLink to={`/article/${news.slug}`}>
                         <img src={base_path+news?.banner} alt="hero image" style={{width:'406px',height:'270px',objectFit:'cover',objectPosition:'center'}}/>
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className="postbox__text pt-20">
                     <h4 className="title-18 pr-0">
-                        <Link to="#">{news?.title}</Link>
+                        <NavLink to={`/article/${news.slug}`}>{news?.title}</NavLink>
                     </h4>
                     <div className="postbox__text-meta pb-10">
                         <ul>

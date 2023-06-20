@@ -13,7 +13,7 @@ import "./assets/css/style.css";
 import Main from "./layouts/Main.jsx";
 import Home from "./pages/Home.jsx";
 import Category from "./pages/Category.jsx";
-import {Helmet} from "react-helmet";
+import NewsDetails from "./pages/NewsDetails.jsx";
 
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
                 <Route path="/" element={<Main/>}>
                     <Route index element={<Home/>}/>
                     <Route path="collection/:slug" element={<Category/>}/>
+                    <Route path="article/:slug" element={<NewsDetails/>}/>
                 </Route>
             </Routes>
         </>

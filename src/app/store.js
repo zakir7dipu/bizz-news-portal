@@ -9,6 +9,7 @@ import PriceSensitiveInformationReducer from "../features/PriceSensitiveInformat
 import HighlightedNewsReducer from "../features/HighlightedNews/HighlightedNewsSlice.js";
 import NewsReducer from "../features/News/NewsSlice.js";
 import SystemInfoReducer from "../features/SystemInformation/SystemInformationSlice.js";
+import TagsReducer from "../features/Tags/PopularTagSlice.js";
 
 const store = configureStore({
     reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
         highlightedNews: HighlightedNewsReducer,
         allNews: NewsReducer,
         systemInfoData: SystemInfoReducer,
+        popularTags: TagsReducer,
     }
 })
 
