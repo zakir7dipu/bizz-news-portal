@@ -21,12 +21,16 @@ export const errorMessage = (error) => {
 }
 
 export const errorResponseMessage = (error) => {
+    console.log(error.response);
     if (error.response) {
         let errorObject = error.response.data.errors;
         let hasError = Object.getOwnPropertyNames(errorObject)
         if (hasError) {
-            hasError.forEach(err => {
-                Notify("error", errorObject[err])
+            hasError.forEach((err, index) => {
+                if (index !== (hasError.length - 1)) {
+                    Notify("error", errorObject[err])
+                }
+
             })
         } else {
             Notify("error", error.response.data.message)
