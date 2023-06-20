@@ -1,9 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
-import {useInternalLink} from "../../library/helper.js";
+import {subscriptionHandler, useInternalLink} from "../../library/helper.js";
 import {Link} from "react-router-dom";
+import {global} from "../../library/config.js";
 
 function SubscribeArea({logo}) {
+    const [email, setEmail] = useState();
+    const {default_token} = global.config;
+
+    const handleRequest = (e) => {
+        e.preventDefault();
+        let data = {
+            email: email,
+            token: default_token
+        }
+        subscriptionHandler(data)
+        setEmail('');
+    }
+
     return (
         <div className="subscribe-area pt-100 pb-80">
             <Container>
@@ -23,10 +37,12 @@ function SubscribeArea({logo}) {
                                 </Col>
                                 <Col xl={5} lg={5}>
                                     <div className="subscribe-form mb-30">
-                                        <form action="#">
-                                            <input type="email" placeholder="Enter your email"/>
+                                        <form onSubmit={handleRequest}>
+                                            <input name="email" type="email" placeholder="Enter your email"
+                                                   value={email}
+                                                   onChange={(e) => setEmail(e.target.value)}/>
                                             <button type="submit">
-                                                subscribe
+                                                Subscribe
                                             </button>
                                         </form>
                                     </div>

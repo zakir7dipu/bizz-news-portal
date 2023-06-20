@@ -14,6 +14,8 @@ import Main from "./layouts/Main.jsx";
 import Home from "./pages/Home.jsx";
 import Category from "./pages/Category.jsx";
 import NewsDetails from "./pages/NewsDetails.jsx";
+import Page from "./pages/Page.jsx";
+import ContactUs from "./pages/ContactUs.jsx";
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
                     <Route index element={<Home/>}/>
                     <Route path="collection/:slug" element={<Category/>}/>
                     <Route path="article/:slug" element={<NewsDetails/>}/>
+                    <Route path="page/:slug" element={<Page/>}/>
+                    <Route path="contact-us" element={<ContactUs/>}/>
                 </Route>
             </Routes>
         </>

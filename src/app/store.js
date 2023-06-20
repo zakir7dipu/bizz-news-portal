@@ -10,6 +10,7 @@ import HighlightedNewsReducer from "../features/HighlightedNews/HighlightedNewsS
 import NewsReducer from "../features/News/NewsSlice.js";
 import SystemInfoReducer from "../features/SystemInformation/SystemInformationSlice.js";
 import TagsReducer from "../features/Tags/PopularTagSlice.js";
+import PageReducer from "../features/Page/PageSlice.js";
 
 const store = configureStore({
     reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
         allNews: NewsReducer,
         systemInfoData: SystemInfoReducer,
         popularTags: TagsReducer,
+        pageState: PageReducer,
     }
 })
 

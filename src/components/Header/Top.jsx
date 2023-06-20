@@ -1,22 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Col, Row} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {goToExternalLink} from "../../library/helper.js";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllPages} from "../../features/Page/PageSlice.js";
 
 function Top({socialLinkData}) {
-    const {facebook, instagram, linkedin, skype, twitter} = socialLinkData
+    const {facebook, instagram, linkedin, skype, twitter} = socialLinkData;
+    const {isLoading,pages} = useSelector(state => state.pageState);
+
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(getAllPages())
+    },[dispatch]);
+
     return (
         <div className="header__top-area black-bg">
             <div className="container">
                 <Row>
                     <Col xl={6} lg={6} md={6}>
                         <div className="header__top-menu">
-                            <ul>
-                                <li><Link to="#">About </Link></li>
-                                <li><Link to="#">Advertise</Link></li>
-                                <li><Link to="#">Privacy & Policy</Link></li>
-                                <li><Link to="#">Contact Us</Link></li>
-                            </ul>
+                            {!isLoading &&  <ul>
+                                {pages.map(page=>
+                                    <li key={page.id}>
+                                        <NavLink to={`/page/${page.slug}`}>{page.name}</NavLink>
+                                    </li>
+                                )}
+                                <li><Link to="contact-us">Contact Us</Link></li>
+                            </ul>}
                         </div>
                     </Col>
                     <Col xl={6} lg={6} md={6}>

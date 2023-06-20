@@ -4,15 +4,22 @@ import {Link, NavLink} from "react-router-dom";
 import {goToExternalLink} from "../../../library/helper.js";
 import {useDispatch, useSelector} from "react-redux";
 import {showAllCategories} from "../../../features/Category/CategorySlice.js";
+import {getAllPages} from "../../../features/Page/PageSlice.js";
 
 function Index({contact, socialLinkData, description}) {
     const {address, email, mobile, website} = contact;
     const {facebook, instagram, linkedin, skype, twitter} = socialLinkData;
-    const {isLoading, categories, errorMessage} = useSelector(state => state.category)
+    const {isLoading, categories, errorMessage} = useSelector(state => state.category);
+    const {pages} = useSelector(state => state.pageState);
+
     const dispatch = useDispatch();
 
     useEffect(()=>{
         dispatch(showAllCategories)
+    },[dispatch])
+
+    useEffect(()=>{
+        dispatch(getAllPages())
     },[dispatch])
 
     return (
@@ -64,12 +71,14 @@ function Index({contact, socialLinkData, description}) {
                                 <Col xl={4} lg={4}>
                                     <div className="footer-widget mb-30">
                                         <h3>About Us</h3>
-                                        <ul>
-                                            <li><Link to="#">About</Link></li>
-                                            <li><Link to="#">Advertise</Link></li>
-                                            <li><Link to="#">Privacy &amp; Policy</Link></li>
-                                            <li><Link to="#">Contact Us</Link></li>
-                                        </ul>
+                                        {!isLoading &&  <ul>
+                                            {pages.map(page=>
+                                                <li key={page.id}>
+                                                    <NavLink to={`/page/${page.slug}`}>{page.name}</NavLink>
+                                                </li>
+                                            )}
+                                            <li><Link to="contact-us">Contact Us</Link></li>
+                                        </ul>}
 
                                     </div>
                                 </Col>
