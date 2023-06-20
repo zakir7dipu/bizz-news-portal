@@ -1,33 +1,21 @@
 import React, {useEffect, useRef} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
-import {Link, NavLink, useParams} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {extraInfoAction, searchModelAction} from "../../features/MeanuBar/MenuSlice.js";
 import {getAllCategories} from "../../features/Category/CategorySlice.js";
+// import $ from 'jquery';
+
 
 function HeaderMenu(props) {
     const {isLoading, categories, errorMessage} = useSelector(state => state.category)
     const dispatch = useDispatch();
-    const stickyRefer = useRef()
 
     useEffect(()=>{
         dispatch(getAllCategories())
     },[dispatch])
 
     useEffect(() => {
-        // console.log(document.querySelector("[aria-current=page]"))
-        // if(document.querySelector("[aria-current=page]")) {
-        //     document.querySelector("[aria-current=page]").parentElement.classList.add('active');
-        // }
-
-        window.addEventListener('scroll', (e) => {
-            if (document.body.getBoundingClientRect().top < 245) {
-                stickyRefer.current.classList.remove('sticky')
-            } else {
-                stickyRefer.current.className = 'sticky'
-            }
-        });
-
         $("#mobile-menu").meanmenu({
             meanMenuContainer: ".mobile-menu",
             meanScreenWidth: "992"
@@ -35,7 +23,7 @@ function HeaderMenu(props) {
     })
 
     return (
-        <div ref={stickyRefer} className="header__menu-area black-bg header-sticky">
+        <div className="header__menu-area black-bg header-sticky">
             <Container>
                 <Row>
                     {!isLoading && <Col xl={12}>

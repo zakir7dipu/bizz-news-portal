@@ -5,14 +5,16 @@ import Footer from "../components/Footer";
 import {useDispatch, useSelector} from "react-redux";
 import {getSystemInfo} from "../features/SystemInformation/SystemInformationSlice.js";
 import Loading from "../components/Loading";
+import {Helmet} from "react-helmet";
+import ScrollToTop from "react-scroll-up";
 
 function Main(props) {
     const {systemInfoIsLoading, systemInfoErrorMessage} = useSelector(state => state.systemInfoData)
     const dispatch = useDispatch();
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getSystemInfo())
-    },[dispatch])
+    }, [dispatch])
 
     const body = <>
         <Header/>
@@ -20,6 +22,13 @@ function Main(props) {
             <Outlet/>
         </main>
         <Footer/>
+        <ScrollToTop
+            showUnder={160}
+            EasingType='easeOutCubic'
+            AnimationDuration={500}
+        >
+            <i className="fas fa-level-up-alt scrollUp"></i>
+        </ScrollToTop>
     </>
 
     const loading = <Loading/>

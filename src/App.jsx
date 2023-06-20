@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./assets/css/owl.carousel.min.css";
@@ -13,6 +13,7 @@ import "./assets/css/style.css";
 import Main from "./layouts/Main.jsx";
 import Home from "./pages/Home.jsx";
 import Category from "./pages/Category.jsx";
+import {Helmet} from "react-helmet";
 
 
 function App() {
