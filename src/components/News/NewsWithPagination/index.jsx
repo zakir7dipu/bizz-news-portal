@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Col, Row} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import pol6 from "../../../assets/img/politic/sm-pol1.jpg";
 import moment from "moment/moment";
 import {useDispatch, useSelector} from "react-redux";
@@ -44,9 +44,9 @@ function Index({categorySlug}) {
                     <Col xl={4} lg={6} md={6} key={item.slug}>
                         <div className="postbox mb-30">
                             <div className="postbox__thumb">
-                                <Link to="#">
+                                <NavLink to={`/article/${item.slug}`}>
                                     <img src={base_path+getImage(item.banners, 'sm')} alt="hero image"/>
-                                </Link>
+                                </NavLink>
                             </div>
                             <div className="postbox__text pt-10">
                                 <div className="postbox__text-meta pb-10">
@@ -58,7 +58,7 @@ function Index({categorySlug}) {
                                     </ul>
                                 </div>
                                 <h4 className="pr-0">
-                                    <Link to="#">{item.title}</Link>
+                                    <NavLink to={`/article/${item.slug}`}>{item.title}</NavLink>
                                 </h4>
                             </div>
                         </div>

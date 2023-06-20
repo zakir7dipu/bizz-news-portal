@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {global} from "../../library/config.js"
 import {isMobile} from 'react-device-detect';
 import moment from "moment/moment.js";
@@ -29,7 +29,7 @@ function PageHighlightedNews({categorySlug}) {
                 {!isLoading && highlighted && <Col xl={8} lg={8}>
                     <div className="postbox mb-30">
                         <div className="postbox__thumb">
-                            <Link to="#">
+                            <NavLink to={`/article/${highlighted?.slug}`}>
                                 {!isMobile &&
                                     <img className="img-100" src={base_path + highlighted?.banner} alt="hero image"
                                          style={{
@@ -41,9 +41,9 @@ function PageHighlightedNews({categorySlug}) {
                                 {isMobile &&
                                     <img className="img-100" src={base_path + highlighted?.banner} alt="hero image"/>}
 
-                            </Link>
+                            </NavLink>
                             <span className="post-cat post-absolute">
-                            <Link to="#">{highlighted?.category?.name}</Link>
+                            <NavLink to={`/collection/${highlighted?.category?.slug}`}>{highlighted?.category?.name}</NavLink>
                         </span>
                         </div>
                         <div className="postbox__text pt-10">
@@ -56,7 +56,7 @@ function PageHighlightedNews({categorySlug}) {
                                 </ul>
                             </div>
                             <h4 className="title-16 pr-0">
-                                <Link to="#">{highlighted?.title}</Link>
+                                <NavLink to={`/article/${highlighted?.slug}`}>{highlighted?.title}</NavLink>
                             </h4>
                         </div>
                     </div>
@@ -68,9 +68,9 @@ function PageHighlightedNews({categorySlug}) {
                         return (
                             <div className="postbox mb-30" key={item.slug}>
                                 <div className="postbox__thumb">
-                                    <Link to="#">
+                                    <NavLink to={`/article/${item?.slug}`}>
                                         <img src={base_path + getImage(item.banners, 'md')} alt="hero image"/>
-                                    </Link>
+                                    </NavLink>
                                 </div>
                                 <div className="postbox__text pt-10">
                                     <div className="postbox__text-meta pb-10">
@@ -82,7 +82,7 @@ function PageHighlightedNews({categorySlug}) {
                                         </ul>
                                     </div>
                                     <h4 className="pr-0">
-                                        <Link to="#">{item.title}</Link>
+                                        <NavLink to={`/article/${item?.slug}`}>{item.title}</NavLink>
                                     </h4>
                                 </div>
                             </div>

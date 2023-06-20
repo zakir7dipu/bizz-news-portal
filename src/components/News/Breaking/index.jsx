@@ -5,7 +5,7 @@ import "moment/locale/bn.js"
 import banglaTarikh from "bangla-tarikh";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllBreakingNew} from "../../../features/BreakingNews/BreakingNewsSlice.js";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 function Index(props) {
     const {isLoading, breakingNews, errorMessage} =useSelector(state => state.breakingNews)
@@ -64,10 +64,9 @@ function Index(props) {
 
                             {!isLoading && <ul className="breaking__ticker-active owl-carousel">
                                 {breakingNews && breakingNews.map(brn=><li key={brn.id}>
-                                    <Link href="#">{brn.title}</Link>
+                                    <NavLink to={`/article/${brn.slug}`}>{brn.title}</NavLink>
                                 </li>)}
                             </ul>}
-
                         </div>
                     </Col>
                 </Row>
