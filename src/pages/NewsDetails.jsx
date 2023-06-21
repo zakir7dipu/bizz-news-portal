@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import PopularTags from "../components/Tags/PopularTags.jsx";
 import PopularNews from "../components/News/PopularNews";
 import {Link, useParams} from "react-router-dom";
-import adver from "../assets/img/add/add-sidebar.jpg";
 import PostDetailsContent from "../components/NewsDetails/PostDetailsContent.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchNewsBySlug} from "../features/News/NewsSlice.js";
+import {fetchAdBySlug6} from "../features/Advertisements/advertisementSlice.js";
+import {useInternalLink} from "../library/helper.js";
 
 function NewsDetails() {
     const {slug} = useParams();
@@ -13,7 +14,13 @@ function NewsDetails() {
         isLoading,
         metaInfo
     } = useSelector((state) => state.allNews);
+    const {metaAd6} = useSelector(state => state.advertisementState);
+
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchAdBySlug6('advertisement-6'));
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(fetchNewsBySlug(slug))
@@ -30,7 +37,7 @@ function NewsDetails() {
                         <div className="col-xl-4 col-lg-4">
                             <div className="widget mb-40">
                                 <Link to="#">
-                                    <img src={adver} alt=""/>
+                                    <img src={useInternalLink(metaAd6?.advertisement)} alt=""/>
                                 </Link>
                             </div>
                             <div className="widget widget-border mb-40">

@@ -11,6 +11,7 @@ import NewsReducer from "../features/News/NewsSlice.js";
 import SystemInfoReducer from "../features/SystemInformation/SystemInformationSlice.js";
 import TagsReducer from "../features/Tags/PopularTagSlice.js";
 import PageReducer from "../features/Page/PageSlice.js";
+import AdvertisementReducer from "../features/Advertisements/advertisementSlice.js";
 
 const store = configureStore({
     reducer: {
@@ -26,6 +27,7 @@ const store = configureStore({
         systemInfoData: SystemInfoReducer,
         popularTags: TagsReducer,
         pageState: PageReducer,
+        advertisementState: AdvertisementReducer,
     }
 })
 

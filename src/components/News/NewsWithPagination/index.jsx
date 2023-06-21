@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Col, Row} from "react-bootstrap";
-import {Link, NavLink} from "react-router-dom";
-import pol6 from "../../../assets/img/politic/sm-pol1.jpg";
+import {NavLink} from "react-router-dom";
 import moment from "moment/moment";
 import {useDispatch, useSelector} from "react-redux";
 import {getNews} from "../../../features/News/NewsSlice.js";
 import {global} from "../../../library/config.js"
 import {getImage} from "../../../library/helper.js";
 import CollectionBottomSkeleton from "../../UI/Skeletons/Collection/CollectionBottomSkeleton.jsx";
+
 const {base_path} = global.config
 
 function Index({categorySlug}) {

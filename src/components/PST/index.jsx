@@ -2,20 +2,28 @@ import React, {useEffect} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import PstContent from "./PsfContent.jsx";
 import Advertisement04 from "../Advertisement/Advertisement04.jsx";
-import pstImg01 from "../../assets/img/pst/BGIC-483x322.jpg"
 import AdvertisementImg from "../../assets/img/add/491746267754514836.png"
 import {useDispatch, useSelector} from "react-redux";
 import {getPriceSensitiveInformation} from "../../features/PriceSensitiveInformation/PriceSensitiveInformationSlice.js";
 import {global} from "../../library/config.js"
+import {fetchAdBySlug4} from "../../features/Advertisements/advertisementSlice.js";
+import {useInternalLink} from "../../library/helper.js";
+
 const {base_path} = global.config
 
 function Index(props) {
     const {isLoading, psts, errorMessage} = useSelector(state => state.PriceSensitiveInformation)
+    const {metaAd4} = useSelector(state => state.advertisementState);
+
     const dispatch = useDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
+        dispatch(fetchAdBySlug4('advertisement-4'));
+    }, [dispatch]);
+
+    useEffect(() => {
         dispatch(getPriceSensitiveInformation())
-    },[dispatch])
+    }, [dispatch])
 
     return (
         <section className="latest-area pb-30">
@@ -38,7 +46,7 @@ function Index(props) {
                     </Col>
                     <Col xl={3} lg={3} className="d-md-none d-lg-block">
                         <Advertisement04
-                            image={AdvertisementImg}
+                            image={useInternalLink(metaAd4?.advertisement)}
                         />
                     </Col>
                 </Row>}
