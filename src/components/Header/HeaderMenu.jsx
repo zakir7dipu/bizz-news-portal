@@ -4,8 +4,6 @@ import {Link, NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {extraInfoAction, searchModelAction} from "../../features/MeanuBar/MenuSlice.js";
 import {getAllCategories} from "../../features/Category/CategorySlice.js";
-// import $ from 'jquery';
-
 
 function HeaderMenu(props) {
     const {isLoading, categories, errorMessage} = useSelector(state => state.category)
@@ -15,18 +13,11 @@ function HeaderMenu(props) {
         dispatch(getAllCategories())
     },[dispatch])
 
-    useEffect(() => {
-        $("#mobile-menu").meanmenu({
-            meanMenuContainer: ".mobile-menu",
-            meanScreenWidth: "992"
-        });
-    })
-
     return (
         <div className="header__menu-area black-bg header-sticky">
             <Container>
                 <Row>
-                    {!isLoading && <Col xl={12}>
+                    {!isLoading && <Col xl={12} style={{height:"55px"}}>
                         <div className="header__right-icon f-right mt-17">
                             <Link to="#" onClick={e => {
                                 e.preventDefault()
@@ -42,7 +33,7 @@ function HeaderMenu(props) {
                             </Link>
                         </div>
                         <div className="header__menu f-left">
-                            <nav id="mobile-menu">
+                            <nav id="mobile-menu" className="d-lg-inline-block d-none">
                                 <ul>
                                     <li className="headerMenu"><NavLink to="/">সর্বশেষ</NavLink></li>
                                     {categories && Array.from(categories).map(cat=><li className="headerMenu" key={cat.id}><NavLink to={`/collection/${cat.slug}`}>{cat.name}</NavLink></li>)}

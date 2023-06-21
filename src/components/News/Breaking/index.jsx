@@ -6,43 +6,16 @@ import banglaTarikh from "bangla-tarikh";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllBreakingNew} from "../../../features/BreakingNews/BreakingNewsSlice.js";
 import {Link, NavLink} from "react-router-dom";
+import Marquee from "react-fast-marquee";
 
 
 function Index(props) {
-    const {isLoading, breakingNews, errorMessage} =useSelector(state => state.breakingNews)
+    const {isLoading, breakingNews, errorMessage} = useSelector(state => state.breakingNews)
     const dispatch = useDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getAllBreakingNew())
-    },[])
-
-    useEffect(()=>{
-        $(".breaking__ticker-active").owlCarousel({
-            loop: true,
-            margin: 0,
-            autoplay: false,
-            items: 1,
-            navText: [
-                '<i class="fa fa-angle-left"></i>',
-                '<i class="fa fa-angle-right"></i>'
-            ],
-            nav: true,
-            dots: false,
-            animateOut: "slideOutDown",
-            animateIn: "flipInX",
-            responsive: {
-                0: {
-                    items: 1
-                },
-                767: {
-                    items: 1
-                },
-                992: {
-                    items: 1
-                }
-            }
-        });
-    })
+    }, [])
 
     return (
         <section className="breaking pt-25 pb-25">
@@ -52,7 +25,8 @@ function Index(props) {
                         <div className="breaking__meta mb-30">
                             <ul>
                                 <li><i className="fas fa-calendar-alt"></i> <span>{moment().format('LL')}</span></li>
-                                <li><i className="fas fa-calendar-alt"></i> <span>{banglaTarikh.format('DTS MMMM, YYYYT')}</span></li>
+                                <li><i className="fas fa-calendar-alt"></i>
+                                    <span>{banglaTarikh.format('DTS MMMM, YYYYT')}</span></li>
                                 <li><i className="fas fa-clock"></i> <span>{moment().format('LT')}</span></li>
                             </ul>
                         </div>
@@ -62,12 +36,30 @@ function Index(props) {
                     <Col>
                         <div className="breaking__wrapper">
                             <h5 className="breaking__title ">তাজা খবর</h5>
-
-                            {!isLoading && <ul className="breaking__ticker-active owl-carousel">
-                                {breakingNews && breakingNews.map(brn=><li key={brn.id}>
-                                    <NavLink to={`/article/${brn.slug}`}>{brn.title}</NavLink>
-                                </li>)}
-                            </ul>}
+                            <Marquee
+                                direction="Left"
+                                speed={20}
+                                pauseOnHover
+                                style={{display: "flex", justifyContent: "center", alignItems: 'center'}}
+                            >
+                                {breakingNews && breakingNews.map(brn => {
+                                    return (
+                                        <p key={brn.id} style={{padding:"10px 0", margin:"0"}}>
+                                            <Link to={`/article/${brn.slug}`}>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <i className="fas fa-star text-warning"></i>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                {brn.title}
+                                            </Link>
+                                        </p>
+                                    )
+                                })}
+                            </Marquee>
+                            {/*{!isLoading && <ul className="breaking__ticker-active owl-carousel">*/}
+                            {/*    {breakingNews && breakingNews.map(brn=><li key={brn.id}>*/}
+                            {/*        <NavLink to={/article/${brn.slug}}>{brn.title}</NavLink>*/}
+                            {/*    </li>)}*/}
+                            {/*</ul>}*/}
                         </div>
                     </Col>
                 </Row>

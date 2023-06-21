@@ -3,7 +3,7 @@ import {Button, Col, Row} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 import moment from "moment/moment";
 import {useDispatch, useSelector} from "react-redux";
-import {getNews} from "../../../features/News/NewsSlice.js";
+import {getMoreNews, getNews} from "../../../features/News/NewsSlice.js";
 import {global} from "../../../library/config.js"
 import {getImage} from "../../../library/helper.js";
 import CollectionBottomSkeleton from "../../UI/Skeletons/Collection/CollectionBottomSkeleton.jsx";
@@ -11,6 +11,7 @@ import CollectionBottomSkeleton from "../../UI/Skeletons/Collection/CollectionBo
 const {base_path} = global.config
 
 function Index({categorySlug}) {
+    console.log(categorySlug)
     const {isLoading, news, total_rows, total_pages} = useSelector(state => state.allNews)
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState(1)
@@ -22,7 +23,7 @@ function Index({categorySlug}) {
             page:currentPage+1,
             categorySlug: categorySlug
         }
-        dispatch(getNews(data))
+        dispatch(getMoreNews(data))
     }
 
     useEffect(()=>{
