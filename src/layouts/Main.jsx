@@ -7,9 +7,10 @@ import {getSystemInfo} from "../features/SystemInformation/SystemInformationSlic
 import Loading from "../components/Loading";
 import {Helmet} from "react-helmet";
 import ScrollToTop from "react-scroll-up";
+import {useInternalLink} from "../library/helper.js";
 
-function Main(props) {
-    const {systemInfoIsLoading, systemInfoErrorMessage} = useSelector(state => state.systemInfoData)
+function Main() {
+    const {systemInfoIsLoading, systemInfo, systemInfoErrorMessage} = useSelector(state => state.systemInfoData)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,6 +18,10 @@ function Main(props) {
     }, [dispatch])
 
     const body = <>
+        <Helmet>
+            <title>{systemInfo?.name}</title>
+            <link rel="icon" type="image/png" href={useInternalLink(systemInfo?.icon)}/>
+        </Helmet>
         <Header/>
         <main>
             <Outlet/>
