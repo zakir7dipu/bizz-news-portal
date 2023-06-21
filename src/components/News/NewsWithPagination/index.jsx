@@ -11,11 +11,10 @@ import CollectionBottomSkeleton from "../../UI/Skeletons/Collection/CollectionBo
 const {base_path} = global.config
 
 function Index({categorySlug}) {
-    console.log(categorySlug)
     const {isLoading, news, total_rows, total_pages} = useSelector(state => state.allNews)
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState(1)
-    const [paginateItem, setPaginateItem] = useState(2)
+    const [paginateItem, setPaginateItem] = useState(12)
 
     const paginateAction = () => {
         let data = {
