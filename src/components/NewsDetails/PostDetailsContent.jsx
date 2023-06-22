@@ -28,15 +28,6 @@ function PostDetailsContent({metaInfo}) {
                             <i className="fas fa-calendar-alt"></i>
                             <span>{moment(metaInfo?.updated_at).format('LL')}</span>
                         </li>
-                        {/*<li>*/}
-                        {/*    <i className="far fa-comment"></i>*/}
-                        {/*    <span>*/}
-                        {/*        <FacebookProvider appId="YOUR_APP_ID">*/}
-                        {/*            <CommentsCount href={`${window.location.origin}/article/${metaInfo.id}`}/>*/}
-                        {/*            /!* Your component code *!/*/}
-                        {/*        </FacebookProvider>*/}
-                        {/*    </span>*/}
-                        {/*</li>*/}
                     </ul>
                 </div>
 
