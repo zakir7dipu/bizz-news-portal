@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {NavLink} from "react-router-dom";
 import moment from "moment";
 import {getNews} from "../../features/News/NewsSlice.js";
+import CollectionBottomSkeleton from "../UI/Skeletons/Collection/CollectionBottomSkeleton.jsx";
 
 function RelatedNews({excludeNews,slug, base_path}) {
     const {isLoading, news} = useSelector(state => state.allNews)
@@ -19,6 +20,7 @@ function RelatedNews({excludeNews,slug, base_path}) {
 
     return (
         <>
+            {isLoading && <CollectionBottomSkeleton card={6}/>}
             {!isLoading && news.map(tnb => {
                 return (
                     <div className="col-lg-4 col-md-4" key={tnb?.id}>
