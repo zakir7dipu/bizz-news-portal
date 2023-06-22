@@ -38,7 +38,7 @@ function Index(props) {
                             <h5 className="breaking__title ">তাজা খবর</h5>
                             <Marquee
                                 direction="Left"
-                                speed={20}
+                                speed={60}
                                 pauseOnHover
                                 style={{display: "flex", justifyContent: "center", alignItems: 'center'}}
                             >

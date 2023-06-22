@@ -11,6 +11,7 @@ function Category(props) {
     const [loading, setLoading] = useState(true)
     useEffect(()=>{
         setCategory(categories.filter(cat=>cat.slug === slug)[0])
+        window.scrollTo(0, 0);
     },[isLoading, slug])
 
     return (
