@@ -8,6 +8,7 @@ import SFacebookPostShare from "../SocialShare/FacebookShare.jsx";
 import TwitterShare from "../SocialShare/TwitterShare.jsx";
 import LinkedinShare from "../SocialShare/LinkedinShare.jsx";
 import {useInternalLink} from "../../library/helper.js";
+import WhatsappShare from "../SocialShare/WhatsappShare.jsx";
 
 function PostDetailsContent({metaInfo}) {
     const {base_path} = global.config;
@@ -28,15 +29,6 @@ function PostDetailsContent({metaInfo}) {
                             <i className="fas fa-calendar-alt"></i>
                             <span>{moment(metaInfo?.updated_at).format('LL')}</span>
                         </li>
-                        {/*<li>*/}
-                        {/*    <i className="far fa-comment"></i>*/}
-                        {/*    <span>*/}
-                        {/*        <FacebookProvider appId="YOUR_APP_ID">*/}
-                        {/*            <CommentsCount href={`${window.location.origin}/article/${metaInfo.id}`}/>*/}
-                        {/*            /!* Your component code *!/*/}
-                        {/*        </FacebookProvider>*/}
-                        {/*    </span>*/}
-                        {/*</li>*/}
                     </ul>
                 </div>
 
@@ -44,6 +36,7 @@ function PostDetailsContent({metaInfo}) {
                     <SFacebookPostShare/>
                     <TwitterShare title={metaInfo?.title}/>
                     <LinkedinShare title={metaInfo?.title}/>
+                    <WhatsappShare title={metaInfo?.title}/>
                 </div>
 
                 <div className="post-thumb mb-25">

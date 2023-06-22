@@ -85,3 +85,10 @@ export const linkedinShare = (btn, postUrl, postTitle) => {
         `https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`
     );
 }
+
+export const whatsappShare = (btn, postUrl, postTitle) => {
+    btn.setAttribute(
+        "href",
+        `https://wa.me/?text=${postTitle} ${postUrl}`
+    );
+}
