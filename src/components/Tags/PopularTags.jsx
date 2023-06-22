@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getPopularTags} from "../../features/Tags/PopularTagSlice.js";
 
-function PopularTags() {
+function PopularTags({tag}) {
     const {isLoading, tags, errorMessage} = useSelector(state => state.popularTags)
     const dispatch = useDispatch();
     useEffect(() => {
@@ -15,7 +15,7 @@ function PopularTags() {
             <div className="tagcloud">
                 {!isLoading && tags.map(item => {
                         return (
-                            <Link to="#" className={item.name=='ALL'?'active':''}  key={item?.id}>{item?.name}</Link>
+                            <Link to={`/tags/${item?.name}/news`} className={item.name==tag?'active':''}  key={item?.id}>{item?.name}</Link>
                         )
                     }
                 )}

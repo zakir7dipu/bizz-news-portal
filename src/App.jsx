@@ -16,6 +16,7 @@ import Category from "./pages/Category.jsx";
 import NewsDetails from "./pages/NewsDetails.jsx";
 import Page from "./pages/Page.jsx";
 import ContactUs from "./pages/ContactUs.jsx";
+import TagNews from "./pages/TagNews.jsx";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                     <Route path="collection/:slug" element={<Category/>}/>
                     <Route path="article/:slug" element={<NewsDetails/>}/>
                     <Route path="page/:slug" element={<Page/>}/>
+                    <Route path="tags/:slug/news" element={<TagNews/>}/>
                     <Route path="contact-us" element={<ContactUs/>}/>
                 </Route>
             </Routes>

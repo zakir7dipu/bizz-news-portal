@@ -12,6 +12,7 @@ function Page() {
 
     useEffect(() => {
         dispatch(fetchPageBySlug(slug))
+        window.scrollTo(0, 0);
     }, [slug]);
 
     return (
