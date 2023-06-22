@@ -65,7 +65,7 @@ function PostDetailsContent({metaInfo}) {
                     <span className="content__tags-list">
                         {metaInfo?.tags.map(item => {
                             return (
-                                <Link to={`#`} key={item?.tag?.id}>{item?.tag?.name}</Link>
+                                <Link to={`/tags/${item?.tag?.name}/news`} key={item?.tag?.id}>{item?.tag?.name}</Link>
                             )
                         })
                         }

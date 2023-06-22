@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchNewsBySlug} from "../features/News/NewsSlice.js";
 import {fetchAdBySlug6} from "../features/Advertisements/advertisementSlice.js";
 import {useInternalLink} from "../library/helper.js";
+import SubscriptionNewsLatter from "../components/Subscription/SubscriptionNewsLatter.jsx";
 
 function NewsDetails() {
     const {slug} = useParams();
@@ -43,8 +44,9 @@ function NewsDetails() {
                             <div className="widget widget-border mb-40">
                                 <PopularNews category_slug={metaInfo?.news?.category?.slug}/>
                             </div>
+                            <SubscriptionNewsLatter/>
                             <div className="widget widget-border mb-40">
-                                <PopularTags/>
+                                <PopularTags tag={`ALL`}/>
                             </div>
 
                         </div>
