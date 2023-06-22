@@ -23,6 +23,7 @@ function NewsDetails() {
     const dispatch = useDispatch();
 
     const [siteName, setSiteName] = useState("News");
+    const [siteDescription, setsiteDescription] = useState("News");
 
     useEffect(() => {
         dispatch(fetchAdBySlug6('advertisement-6'));
@@ -37,6 +38,7 @@ function NewsDetails() {
     useEffect( ()=>{
         if(metaInfo?.news) {
             setSiteName(metaInfo?.news?.title)
+            setsiteDescription(metaInfo?.news?.news)
         }
     },[metaInfo])
 
@@ -44,6 +46,10 @@ function NewsDetails() {
         <>
             <Helmet>
                 <title>Bizz News | {siteName}</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta name="description" content={siteDescription}/>
+                <meta name="author" content="bizznewsbd.com"/>
+                <meta name="keywords" content="bizznewsbd, news, bizz,bizzsolution, prothom alo, ssg"/>
             </Helmet>
             <section className="post-details-area pt-60 pb-30">
                 <div className="container">
