@@ -14,6 +14,7 @@ function TagAllNews({tag}) {
 
     useEffect(() => {
         dispatch(fetchAdBySlug5('advertisement-5'));
+        window.scrollTo(0, 0);
     }, [dispatch]);
     return (
         <>

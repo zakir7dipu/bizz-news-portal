@@ -8,9 +8,11 @@ import {fetchNewsBySlug} from "../features/News/NewsSlice.js";
 import {fetchAdBySlug6} from "../features/Advertisements/advertisementSlice.js";
 import {useInternalLink} from "../library/helper.js";
 import SubscriptionNewsLatter from "../components/Subscription/SubscriptionNewsLatter.jsx";
+import NewsDetailsSkeleton from "../components/UI/Skeletons/NewsDetails/NewsDetailsSkeleton.jsx";
 
 function NewsDetails() {
     const {slug} = useParams();
+
     const {
         isLoading,
         metaInfo
@@ -20,20 +22,24 @@ function NewsDetails() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(fetchAdBySlug6('advertisement-6'));
     }, [dispatch]);
 
     useEffect(() => {
         dispatch(fetchNewsBySlug(slug))
+
     }, [slug]);
 
     return (
         <>
+            {console.log(isLoading)}
             <section className="post-details-area pt-60 pb-30">
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-8 col-lg-8">
-                            <PostDetailsContent metaInfo={metaInfo?.news}/>
+                            {isLoading && <NewsDetailsSkeleton/>}
+                            {!isLoading && <PostDetailsContent metaInfo={metaInfo?.news}/>}
                         </div>
                         <div className="col-xl-4 col-lg-4">
                             <div className="widget mb-40">

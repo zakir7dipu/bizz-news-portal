@@ -33,6 +33,7 @@ function TagNewsWithPagination({tagName}) {
             }
             dispatch(getNews(data))
         }
+        window.scrollTo(0, 0);
     }, [tagName]);
 
     return (
