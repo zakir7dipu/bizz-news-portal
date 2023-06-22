@@ -3,10 +3,11 @@ import moment from "moment";
 import {global} from "../../library/config.js";
 import {Link} from "react-router-dom";
 import RelatedNews from "./RelatedNews.jsx";
-import {FacebookProvider, Comments, CommentsCount} from 'react-facebook';
-import FacebookPostShare from "../SocialShare/FacebookShare.jsx";
+import {FacebookProvider, Comments} from 'react-facebook';
+import SFacebookPostShare from "../SocialShare/FacebookShare.jsx";
 import TwitterShare from "../SocialShare/TwitterShare.jsx";
 import LinkedinShare from "../SocialShare/LinkedinShare.jsx";
+import {useInternalLink} from "../../library/helper.js";
 
 function PostDetailsContent({metaInfo}) {
     const {base_path} = global.config;
@@ -40,13 +41,13 @@ function PostDetailsContent({metaInfo}) {
                 </div>
 
                 <div className="share-post-link mb-30">
-                    <FacebookPostShare/>
+                    <SFacebookPostShare/>
                     <TwitterShare title={metaInfo?.title}/>
                     <LinkedinShare title={metaInfo?.title}/>
                 </div>
 
                 <div className="post-thumb mb-25">
-                    <img src={base_path + metaInfo?.banner} alt={metaInfo?.title}/>
+                    <img src={useInternalLink(metaInfo?.banner)} alt={metaInfo?.title}/>
                 </div>
 
                 <div className="post-content">
@@ -79,10 +80,11 @@ function PostDetailsContent({metaInfo}) {
                     <div className="section-title mb-30">
                         <h2>Recent Comments</h2>
                     </div>
-                    <FacebookProvider appId="YOUR_APP_ID">
+                    <FacebookProvider appId="985668189451401">
                         <Comments href={`${window.location.origin}/article/${metaInfo?.id}`}/>
                     </FacebookProvider>
                 </div>
+
             </div>
         </>
     );

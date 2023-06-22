@@ -8,6 +8,7 @@ const {default_token} = global.config
 
 const initialData = {
     isLoading: true,
+    isMetaLoading: true,
     news: [],
     total_rows: 0,
     total_pages: 1,
@@ -100,14 +101,14 @@ export const newsSlice = createSlice({
             state.errorMessage = payload
         },
         [fetchNewsBySlug.pending]: (state) => {
-            state.isLoading = true
+            state.isMetaLoading = true
         },
         [fetchNewsBySlug.fulfilled]: (state, {payload}) => {
-            state.isLoading = false;
+            state.isMetaLoading = false;
             state.metaInfo = payload;
         },
         [fetchNewsBySlug.rejected]: (state, {payload}) => {
-            state.isLoading = false;
+            state.isMetaLoading = false;
             state.message = payload;
         },
     }

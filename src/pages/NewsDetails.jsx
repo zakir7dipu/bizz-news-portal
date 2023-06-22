@@ -8,13 +8,15 @@ import {fetchNewsBySlug} from "../features/News/NewsSlice.js";
 import {fetchAdBySlug6} from "../features/Advertisements/advertisementSlice.js";
 import {useInternalLink} from "../library/helper.js";
 import SubscriptionNewsLatter from "../components/Subscription/SubscriptionNewsLatter.jsx";
+import NewsDetailsSkeleton from "../components/UI/Skeletons/NewsDetails/NewsDetailsSkeleton.jsx";
 
 function NewsDetails() {
     const {slug} = useParams();
     const {
-        isLoading,
+        isMetaLoading,
         metaInfo
     } = useSelector((state) => state.allNews);
+
     const {metaAd6} = useSelector(state => state.advertisementState);
 
     const dispatch = useDispatch();
@@ -34,7 +36,8 @@ function NewsDetails() {
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-8 col-lg-8">
-                            <PostDetailsContent metaInfo={metaInfo?.news}/>
+                            {isMetaLoading && <NewsDetailsSkeleton/>}
+                            {!isMetaLoading && <PostDetailsContent metaInfo={metaInfo?.news}/>}
                         </div>
                         <div className="col-xl-4 col-lg-4">
                             <div className="widget mb-40">
@@ -54,7 +57,6 @@ function NewsDetails() {
                     </div>
                 </div>
             </section>
-
         </>
     );
 }
