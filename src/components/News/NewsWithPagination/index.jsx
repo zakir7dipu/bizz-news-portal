@@ -20,7 +20,8 @@ function Index({categorySlug}) {
         let data = {
             paginate:paginateItem,
             page:currentPage+1,
-            categorySlug: categorySlug
+            categorySlug: categorySlug,
+            excludeSpace : 'category-highlighted-news'
         }
         dispatch(getMoreNews(data))
     }
@@ -30,7 +31,8 @@ function Index({categorySlug}) {
             let data = {
                 paginate:paginateItem,
                 page:currentPage,
-                categorySlug: categorySlug
+                categorySlug: categorySlug,
+                excludeSpace : 'category-highlighted-news'
             }
             dispatch(getNews(data))
         }

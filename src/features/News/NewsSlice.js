@@ -18,15 +18,15 @@ const initialData = {
 
 export const getNews = createAsyncThunk("news/getNews", async (data, {rejectWithValue}) => {
     try {
-        const {paginate, page, categorySlug, excludeNews,tagName,search} = data;
+        const {paginate, page,excludeSpace, categorySlug, excludeNews,tagName,search} = data;
         const autAccess = {
             token: default_token,
             category_slug: categorySlug,
             paginate: paginate,
             page: page,
-            exclude_space: 'category-highlighted-news',
+            exclude_space: excludeSpace,
             exclude_news: excludeNews,
-            tag: tagName,
+            tag_slug: tagName,
             search: search,
 
         }
@@ -39,15 +39,15 @@ export const getNews = createAsyncThunk("news/getNews", async (data, {rejectWith
 
 export const getMoreNews = createAsyncThunk("news/getMoreNews", async (data, {rejectWithValue}) => {
     try {
-        const {paginate, page, categorySlug, excludeNews,tagName,search} = data;
+        const {paginate, page, excludeSpace ,categorySlug, excludeNews,tagName,search} = data;
         const autAccess = {
             token: default_token,
             category_slug: categorySlug,
             paginate: paginate,
             page: page,
-            exclude_space: 'category-highlighted-news',
+            exclude_space: excludeSpace,
             exclude_news: excludeNews,
-            tag: tagName,
+            tag_slug: tagName,
             search: search,
         }
         const res = await access.post("news", autAccess)
