@@ -64,3 +64,24 @@ export const uid = () => {
 export const truncateString = (str, n) => {
     return (str?.length > n) ? `${str.slice(0, n - 1)}...` : str;
 }
+
+export const facebookShare = (btn, postUrl) => {
+    btn.setAttribute(
+        "href",
+        `https://www.facebook.com/sharer.php?u=${postUrl}`
+    );
+}
+
+export const twitterShare = (btn, postUrl, postTitle) => {
+    btn.setAttribute(
+        "href",
+        `https://twitter.com/share?url=${postUrl}&text=${postTitle}`
+    );
+}
+
+export const linkedinShare = (btn, postUrl, postTitle) => {
+    btn.setAttribute(
+        "href",
+        `https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`
+    );
+}
