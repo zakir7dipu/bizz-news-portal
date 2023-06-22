@@ -20,7 +20,7 @@ function Main() {
     const body = <>
         <Helmet>
             <title>{systemInfo?.name}</title>
-            <link rel="icon" type="image/png" href={useInternalLink(systemInfo?.icon)}/>
+            <link rel="icon" type="image/png" href={systemInfo?.icon && useInternalLink(systemInfo?.icon)}/>
         </Helmet>
         <Header/>
         <main>
