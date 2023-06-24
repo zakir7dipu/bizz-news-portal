@@ -1,16 +1,29 @@
-import React, {useEffect, useRef} from 'react';
-import {Button, Modal} from "react-bootstrap";
+import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {searchModelAction} from "../../features/MeanuBar/MenuSlice.js";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {infoMessage} from "../../library/helper.js";
 
 function ModalSearch(props) {
+
     const {searchModel} = useSelector(state => state.menubar);
     const dispatch = useDispatch();
+
     const referBody = useRef();
+    const [searchText, setSearchText] = useState();
+    const navigate = useNavigate();
+
+    const handleRequest = (e) => {
+        e.preventDefault();
+
+        infoMessage("Please wait a while, We are processing your request.");
+        navigate(`/news-search/${searchText}`);
+        setSearchText(" ");
+        dispatch(searchModelAction(false))
+    }
 
     useEffect(() => {
-        if(searchModel) {
+        if (searchModel) {
             referBody.current.classList.add('show')
             referBody.current.style.display = 'block'
             referBody.current.style.paddingRight = '15.9851px'
@@ -31,9 +44,10 @@ function ModalSearch(props) {
             </Link>
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
-                    <form>
-                        <input type="text" placeholder="Search here..."/>
-                        <button>
+                    <form onSubmit={handleRequest}>
+                        <input type="text" placeholder="Search here..." value={searchText}
+                               onChange={(e) => setSearchText(e.target.value)}/>
+                        <button type="submit">
                             <i className="fa fa-search"></i>
                         </button>
                     </form>

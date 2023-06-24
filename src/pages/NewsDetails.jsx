@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PopularTags from "../components/Tags/PopularTags.jsx";
 import PopularNews from "../components/News/PopularNews";
 import {Link, useParams} from "react-router-dom";
@@ -9,6 +9,7 @@ import {fetchAdBySlug6} from "../features/Advertisements/advertisementSlice.js";
 import {useInternalLink} from "../library/helper.js";
 import SubscriptionNewsLatter from "../components/Subscription/SubscriptionNewsLatter.jsx";
 import NewsDetailsSkeleton from "../components/UI/Skeletons/NewsDetails/NewsDetailsSkeleton.jsx";
+import {Helmet} from "react-helmet";
 
 function NewsDetails() {
     const {slug} = useParams();
@@ -21,6 +22,9 @@ function NewsDetails() {
 
     const dispatch = useDispatch();
 
+    const [siteName, setSiteName] = useState("News");
+    const [siteDescription, setsiteDescription] = useState("News");
+
     useEffect(() => {
         dispatch(fetchAdBySlug6('advertisement-6'));
     }, [dispatch]);
@@ -28,10 +32,25 @@ function NewsDetails() {
     useEffect(() => {
         dispatch(fetchNewsBySlug(slug))
         window.scrollTo(0, 0);
+
     }, [slug]);
+
+    useEffect( ()=>{
+        if(metaInfo?.news) {
+            setSiteName(metaInfo?.news?.title)
+            setsiteDescription(metaInfo?.news?.news)
+        }
+    },[metaInfo])
 
     return (
         <>
+            <Helmet>
+                <title>Bizz News | {siteName}</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta name="description" content={siteDescription}/>
+                <meta name="author" content="bizznewsbd.com"/>
+                <meta name="keywords" content="bizznewsbd, news, bizz,bizzsolution, prothom alo, ssg"/>
+            </Helmet>
             <section className="post-details-area pt-60 pb-30">
                 <div className="container">
                     <div className="row">

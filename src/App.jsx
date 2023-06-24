@@ -17,6 +17,7 @@ import NewsDetails from "./pages/NewsDetails.jsx";
 import Page from "./pages/Page.jsx";
 import ContactUs from "./pages/ContactUs.jsx";
 import TagNews from "./pages/TagNews.jsx";
+import SearchNews from "./pages/SearchNews.jsx";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                     <Route index element={<Home/>}/>
                     <Route path="collection/:slug" element={<Category/>}/>
                     <Route path="article/:slug" element={<NewsDetails/>}/>
+                    <Route path="news-search/:slug" element={<SearchNews/>}/>
                     <Route path="page/:slug" element={<Page/>}/>
                     <Route path="tags/:slug/news" element={<TagNews/>}/>
                     <Route path="contact-us" element={<ContactUs/>}/>

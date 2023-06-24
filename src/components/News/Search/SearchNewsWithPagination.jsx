@@ -1,16 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Col, Row} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
-import moment from "moment/moment";
+import {global} from "../../../library/config.js";
 import {useDispatch, useSelector} from "react-redux";
 import {getMoreNews, getNews} from "../../../features/News/NewsSlice.js";
-import {global} from "../../../library/config.js"
-import {getImage} from "../../../library/helper.js";
+import {Button, Col, Row} from "react-bootstrap";
 import CollectionBottomSkeleton from "../../UI/Skeletons/Collection/CollectionBottomSkeleton.jsx";
+import {NavLink} from "react-router-dom";
+import {getImage, successMessage} from "../../../library/helper.js";
+import moment from "moment/moment.js";
 
-const {base_path} = global.config
-
-function Index({categorySlug}) {
+function SearchNewsWithPagination({search}) {
+    const {base_path} = global.config;
     const {isLoading, news, total_rows, total_pages} = useSelector(state => state.allNews)
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState(1)
@@ -18,36 +17,34 @@ function Index({categorySlug}) {
 
     const paginateAction = () => {
         let data = {
-            paginate:paginateItem,
-            page:currentPage+1,
-            categorySlug: categorySlug,
-            excludeSpace : 'category-highlighted-news'
+            paginate: paginateItem,
+            page: currentPage + 1,
+            search: search
         }
         dispatch(getMoreNews(data))
     }
 
-    useEffect(()=>{
-        if(categorySlug) {
+    useEffect(() => {
+        if (search) {
             let data = {
-                paginate:paginateItem,
-                page:currentPage,
-                categorySlug: categorySlug,
-                excludeSpace : 'category-highlighted-news'
+                paginate: paginateItem,
+                page: currentPage,
+                search: search
             }
             dispatch(getNews(data))
         }
-    },[categorySlug])
-
+        window.scrollTo(0, 0);
+    }, [search]);
     return (
         <Row className="pt-30">
             {isLoading && <CollectionBottomSkeleton card={6}/>}
-            {!isLoading &&  news.map(item=>{
+            {!isLoading && news.map(item => {
                 return (
                     <Col xl={4} lg={6} md={6} key={item.slug}>
                         <div className="postbox mb-30">
                             <div className="postbox__thumb">
                                 <NavLink to={`/article/${item.slug}`}>
-                                    <img src={base_path+getImage(item.banners, 'sm')} alt="hero image"/>
+                                    <img src={base_path + getImage(item.banners, 'sm')} alt="hero image"/>
                                 </NavLink>
                             </div>
                             <div className="postbox__text pt-10">
@@ -68,9 +65,9 @@ function Index({categorySlug}) {
                 )
             })}
             <Col sm={12} className="text-center">
-                {total_rows !== news?.length && <Button variant="light" onClick={e=>{
+                {total_rows !== news?.length && <Button variant="light" onClick={e => {
                     e.preventDefault()
-                    setCurrentPage(prevState => prevState+1)
+                    setCurrentPage(prevState => prevState + 1)
                     paginateAction()
                 }}>আরও</Button>}
 
@@ -79,4 +76,4 @@ function Index({categorySlug}) {
     );
 }
 
-export default Index;
+export default SearchNewsWithPagination;
