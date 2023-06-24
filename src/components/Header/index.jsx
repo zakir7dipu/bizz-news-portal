@@ -30,8 +30,8 @@ function Index(props) {
         <header className="header">
             <Top socialLinkData={socialLinks}/>
             <Middle logo={systemInfo?.logo}/>
-            <HeaderMenu/>
-            <Bottom socialLinkData={socialLinks} logo={systemInfo?.logo}/>
+            <HeaderMenu logo={systemInfo?.secondary_logo}/>
+            <Bottom socialLinkData={socialLinks} logo={systemInfo?.secondary_logo}/>
             <ModalSearch/>
         </header>
     );

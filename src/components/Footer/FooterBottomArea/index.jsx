@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {Link, NavLink} from "react-router-dom";
-import {goToExternalLink} from "../../../library/helper.js";
+import {goToExternalLink, infoMessage} from "../../../library/helper.js";
 import {useDispatch, useSelector} from "react-redux";
 import {showAllCategories} from "../../../features/Category/CategorySlice.js";
 import {getAllPages} from "../../../features/Page/PageSlice.js";
@@ -13,6 +13,11 @@ function Index({contact, socialLinkData, description}) {
     const {pages} = useSelector(state => state.pageState);
 
     const dispatch = useDispatch();
+
+    const copyInfoCommend = (e, text) => {
+        e.preventDefault()
+        navigator.clipboard.writeText(text);
+    }
 
     useEffect(()=>{
         dispatch(showAllCategories)
@@ -86,9 +91,18 @@ function Index({contact, socialLinkData, description}) {
                                     <div className="footer-widget mb-30">
                                         <h3>Contact</h3>
                                         <ul>
-                                            <li><Link to="#"><i className="fas fa-map-marker-alt"></i>&nbsp;{address}</Link> </li>
-                                            <li><Link to="#"><i className="fas fa-envelope"></i>&nbsp;{email}</Link></li>
-                                            <li><Link to="#"><i className="fas fa-mobile-alt"></i>&nbsp;{mobile}</Link></li>
+                                            <li><Link to="#" onClick={e=>{
+                                                copyInfoCommend(e, address)
+                                                infoMessage("Address Copied")
+                                            }}><i className="fas fa-map-marker-alt"></i>&nbsp;{address}</Link> </li>
+                                            <li><Link to="#" onClick={e=>{
+                                                copyInfoCommend(e,email)
+                                                infoMessage("Email Copied")
+                                            }}><i className="fas fa-envelope"></i>&nbsp;{email}</Link></li>
+                                            <li><Link to="#" onClick={e=>{
+                                                copyInfoCommend(e,mobile)
+                                                infoMessage("Contact Number Copied")
+                                            }}><i className="fas fa-mobile-alt"></i>&nbsp;{mobile}</Link></li>
                                             <li><Link to="/"><i className="fas fa-globe"></i>&nbsp;{website}</Link></li>
                                         </ul>
                                     </div>

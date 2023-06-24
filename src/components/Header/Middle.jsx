@@ -5,6 +5,7 @@ import Advertisement01 from "../Advertisement/Advertisement01.jsx";
 import {useInternalLink} from "../../library/helper.js";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAdBySlug1} from "../../features/Advertisements/advertisementSlice.js";
+import {isMobile} from 'react-device-detect';
 
 function Middle({logo}) {
     const {isLoading, metaAd1} = useSelector(state => state.advertisementState);
@@ -15,6 +16,7 @@ function Middle({logo}) {
     }, [dispatch]);
 
     return (
+        !isMobile &&
         <div className="header__middle pt-20">
             <Container>
                 <Row>

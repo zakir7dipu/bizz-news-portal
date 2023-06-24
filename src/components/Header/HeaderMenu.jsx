@@ -4,8 +4,10 @@ import {Link, NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {extraInfoAction, searchModelAction} from "../../features/MeanuBar/MenuSlice.js";
 import {getAllCategories} from "../../features/Category/CategorySlice.js";
+import {useInternalLink} from "../../library/helper.js";
+import {isMobile} from 'react-device-detect';
 
-function HeaderMenu(props) {
+function HeaderMenu({logo}) {
     const {isLoading, categories, errorMessage} = useSelector(state => state.category)
     const dispatch = useDispatch();
 
@@ -19,18 +21,23 @@ function HeaderMenu(props) {
                 <Row>
                     {!isLoading && <Col xl={12} style={{height:"55px"}}>
                         <div className="header__right-icon f-right mt-17">
-                            <Link to="#" onClick={e => {
-                                e.preventDefault()
-                                dispatch(searchModelAction(true))
-                            }}>
-                                <i className="fas fa-search"></i>
-                            </Link>
-                            <Link className="info-bar" to="#" onClick={e => {
-                                e.preventDefault()
-                                dispatch(extraInfoAction(true))
-                            }}>
-                                <i className="fas fa-bars"></i>
-                            </Link>
+                            {isMobile && <Link to="/"><img src={logo && useInternalLink(logo)} alt="Header Logo"
+                                                           style={{width: '115px'}}/></Link>}
+                            <div className="f-right d-inline-block">
+                                <Link to="#" onClick={e => {
+                                    e.preventDefault()
+                                    dispatch(searchModelAction(true))
+                                }}>
+                                    <i className="fas fa-search"></i>
+                                </Link>
+                                <Link className="info-bar" to="#" onClick={e => {
+                                    e.preventDefault()
+                                    dispatch(extraInfoAction(true))
+                                }}>
+                                    <i className="fas fa-bars"></i>
+                                </Link>
+                            </div>
+
                         </div>
                         <div className="header__menu f-left">
                             <nav id="mobile-menu" className="d-lg-inline-block d-none">

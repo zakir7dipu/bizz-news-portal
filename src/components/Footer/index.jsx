@@ -35,7 +35,7 @@ function Index(props) {
 
     return (
         <footer className="footer-bg">
-            <SubscribeArea logo={systemInfo?.logo}/>
+            <SubscribeArea logo={systemInfo?.secondary_logo}/>
             <FooterBottomArea contact={contactInfo} socialLinkData={socialLinks} description={systemInfo?.description}/>
             <div className="copyright-area pt-25 pb-25">
                 <Container>
