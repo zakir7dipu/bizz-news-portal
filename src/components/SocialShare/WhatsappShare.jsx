@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 function WhatsappShare({title}) {
     const whatsappRef = createRef()
     useEffect(()=>{
-        whatsappShare(whatsappRef.current, title, window.location.origin,)
+        whatsappShare(whatsappRef.current, title, window.location.href,)
     },[title])
     return (
         <Link ref={whatsappRef} className="whatsapp" to="#" target="_blank">

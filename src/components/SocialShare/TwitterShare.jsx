@@ -5,7 +5,7 @@ import {twitterShare} from "../../library/helper.js";
 function TwitterShare({title}) {
     const twitterRef = createRef()
     useEffect(()=>{
-        twitterShare(twitterRef.current, window.location.origin,title)
+        twitterShare(twitterRef.current, window.location.href,title)
     },[title])
     return (
         <Link ref={twitterRef} className="twitter" to="#" target="_blank">

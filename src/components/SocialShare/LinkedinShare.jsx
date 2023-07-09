@@ -5,7 +5,7 @@ import {linkedinShare, twitterShare} from "../../library/helper.js";
 function LinkedinShare({title}) {
     const linkedinRef = createRef()
     useEffect(()=>{
-        linkedinShare(linkedinRef.current, window.location.origin,title)
+        linkedinShare(linkedinRef.current, window.location.href,title)
     },[title])
     return (
         <Link ref={linkedinRef} className="linkedin" to="#" target="_blank">

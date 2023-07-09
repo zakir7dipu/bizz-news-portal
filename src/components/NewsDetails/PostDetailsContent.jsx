@@ -7,8 +7,9 @@ import {FacebookProvider, Comments} from 'react-facebook';
 import SFacebookPostShare from "../SocialShare/FacebookShare.jsx";
 import TwitterShare from "../SocialShare/TwitterShare.jsx";
 import LinkedinShare from "../SocialShare/LinkedinShare.jsx";
-import {useInternalLink} from "../../library/helper.js";
+import {truncateString, useInternalLink} from "../../library/helper.js";
 import WhatsappShare from "../SocialShare/WhatsappShare.jsx";
+import Sharethis from "../SocialShare/sharethis.jsx";
 
 function PostDetailsContent({metaInfo}) {
     const {base_path} = global.config;
@@ -33,10 +34,15 @@ function PostDetailsContent({metaInfo}) {
                 </div>
 
                 <div className="share-post-link mb-30">
-                    <SFacebookPostShare/>
-                    <TwitterShare title={metaInfo?.title}/>
-                    <LinkedinShare title={metaInfo?.title}/>
-                    <WhatsappShare title={metaInfo?.title}/>
+                    {/*<SFacebookPostShare image={useInternalLink(metaInfo?.banner)} title={metaInfo?.title}/>*/}
+                    {/*<TwitterShare title={metaInfo?.title}/>*/}
+                    {/*<LinkedinShare title={metaInfo?.title}/>*/}
+                    {/*<WhatsappShare title={metaInfo?.title}/>*/}
+                    <Sharethis url={window.location.href}
+                               image={useInternalLink(metaInfo?.banner)}
+                               description={truncateString(metaInfo?.news, 120)}
+                               title={metaInfo?.title}
+                    />
                 </div>
 
                 <div className="post-thumb mb-25">

@@ -65,11 +65,29 @@ export const truncateString = (str, n) => {
     return (str?.length > n) ? `${str.slice(0, n - 1)}...` : str;
 }
 
-export const facebookShare = (btn, postUrl) => {
-    btn.setAttribute(
-        "href",
-        `https://www.facebook.com/sharer.php?u=${postUrl}`
-    );
+export const facebookShare = (btn, postUrl, postImage, postTitle) => {
+    // Replace the placeholders with your own values
+    const url = postUrl;
+    const imageUrl = postImage;
+    const title = postTitle;
+
+    // Open the Facebook Share Dialog
+    FB.ui({
+        method: 'share',
+        href: url,
+        quote: title,
+        picture: imageUrl
+    }, function(response) {
+        if (response && !response.error_message) {
+            console.log('Post shared successfully.');
+        } else {
+            console.error('Error sharing post:', response && response.error_message);
+        }
+    });
+    // btn.setAttribute(
+    //     "href",
+    //     `https://www.facebook.com/sharer.php?u=${postUrl}`
+    // );
 }
 
 export const twitterShare = (btn, postUrl, postTitle) => {
