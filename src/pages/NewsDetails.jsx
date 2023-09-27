@@ -23,7 +23,11 @@ function NewsDetails() {
     const dispatch = useDispatch();
 
     const [siteName, setSiteName] = useState("News");
-    const [siteDescription, setsiteDescription] = useState("News");
+    const [siteTitle, setSiteTitle] = useState("Bizz News BD");
+    const [siteUrl, setSiteUrl] = useState(
+        window.location.href
+    );
+    const [siteImage, setSiteImage] = useState("News");
 
     useEffect(() => {
         dispatch(fetchAdBySlug6('advertisement-6'));
@@ -35,21 +39,22 @@ function NewsDetails() {
 
     }, [slug]);
 
-    useEffect( ()=>{
-        if(metaInfo?.news) {
+    useEffect(() => {
+        if (metaInfo?.news) {
             setSiteName(metaInfo?.news?.title)
-            setsiteDescription(metaInfo?.news?.news)
+            setSiteTitle(metaInfo?.news?.title)
+            setSiteImage(useInternalLink(metaInfo?.news?.banner))
         }
-    },[metaInfo])
+    }, [metaInfo])
 
     return (
         <>
             <Helmet>
                 <title>Bizz News | {siteName}</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                <meta name="description" content={siteDescription}/>
-                <meta name="author" content="bizznewsbd.com"/>
-                <meta name="keywords" content="bizznewsbd, news, bizz,bizzsolution, prothom alo, ssg"/>
+                <meta property="og:url" content={siteUrl}/>
+                <meta property="og:type" content="News"/>
+                <meta property="og:title" content={siteTitle}/>
+                <meta property="og:image" content={siteImage}/>
             </Helmet>
             <section className="post-details-area pt-60 pb-30">
                 <div className="container">
