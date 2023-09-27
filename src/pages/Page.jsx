@@ -4,6 +4,8 @@ import {useParams} from "react-router-dom";
 import {fetchPageBySlug} from "../features/Page/PageSlice.js";
 import Breadcrumb from "../components/UI/Breadcrumb/Breadcrumb.jsx";
 import PageDetails from "../components/Page/PageDetails.jsx";
+import HeaderMeta from "../components/UI/SEO/HeaderMeta.jsx";
+import {truncateString} from "../library/helper.js";
 
 function Page() {
     const {slug} = useParams();
@@ -19,6 +21,11 @@ function Page() {
         <>
             {!isLoading &&
                 <>
+                    <HeaderMeta
+                        title={metaInfo?.name}
+                        description={truncateString(metaInfo?.desc, 150)}
+                        keywords={`bizznewsbd, news, bizz,bizzsolution, prothom alo, ssg, Business News, ${metaInfo?.name}`}
+                    />
                     <Breadcrumb page={`Page`} activePage={metaInfo?.name}/>
                     <PageDetails metaInfo={metaInfo}/>
                 </>

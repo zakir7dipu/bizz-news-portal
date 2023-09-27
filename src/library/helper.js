@@ -1,6 +1,7 @@
 import {global} from "./config.js"
 import Notify from "./Notify.js";
 import Api from "./api.js";
+import React from "react";
 
 const {access} = new Api();
 const {base_path, default_token} = global.config;
@@ -61,10 +62,6 @@ export const uid = () => {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
-export const truncateString = (str, n) => {
-    return (str?.length > n) ? `${str.slice(0, n - 1)}...` : str;
-}
-
 export const facebookShare = (btn, postUrl, postImage, postTitle) => {
     // Replace the placeholders with your own values
     const url = postUrl;
@@ -109,4 +106,16 @@ export const whatsappShare = (btn, postUrl, postTitle) => {
         "href",
         `https://wa.me/?text=${postTitle} ${postUrl}`
     );
+}
+
+export const truncateString = (str, n) => {
+    return (str?.length > n) ? `${str.slice(0, n - 1)}...` : str;
+}
+
+export const metaKeywordGen = (arr) => {
+    let keywords = [];
+    arr?.map(item => {
+        keywords.push(item?.tag?.name)
+    });
+    return keywords.toString();
 }

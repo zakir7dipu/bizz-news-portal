@@ -5,6 +5,7 @@ import {getData} from "../features/SystemInformation/SystemInformationSlice.js";
 import {errorMessage, errorResponseMessage, infoMessage, successMessage} from "../library/helper.js";
 import Api from "../library/api.js";
 import {global} from "../library/config.js";
+import HeaderMeta from "../components/UI/SEO/HeaderMeta.jsx";
 
 function ContactUs() {
     const {systemInfo} = useSelector(state => state.systemInfoData)
@@ -68,6 +69,9 @@ function ContactUs() {
 
     return (
         <>
+            <HeaderMeta
+                title={`Contact Us`}
+            />
             <Breadcrumb page={`Page`} activePage={`Contact Us`}/>
             <div className="contact-area pt-110 pb-90">
                 <div className="container">

@@ -6,10 +6,11 @@ import PostDetailsContent from "../components/NewsDetails/PostDetailsContent.jsx
 import {useDispatch, useSelector} from "react-redux";
 import {fetchNewsBySlug} from "../features/News/NewsSlice.js";
 import {fetchAdBySlug6} from "../features/Advertisements/advertisementSlice.js";
-import {useInternalLink} from "../library/helper.js";
+import {metaKeywordGen, truncateString, useInternalLink} from "../library/helper.js";
 import SubscriptionNewsLatter from "../components/Subscription/SubscriptionNewsLatter.jsx";
 import NewsDetailsSkeleton from "../components/UI/Skeletons/NewsDetails/NewsDetailsSkeleton.jsx";
-import {Helmet} from "react-helmet";
+import HeaderMeta from "../components/UI/SEO/HeaderMeta.jsx";
+import Loading from "../components/Loading";
 
 function NewsDetails() {
     const {slug} = useParams();
@@ -47,24 +48,25 @@ function NewsDetails() {
         }
     }, [metaInfo])
 
-    return (
-        <>
-            <Helmet>
-                <title>Bizz News | {siteName}</title>
-                <meta property="og:url" content={siteUrl}/>
-                <meta property="og:type" content="News"/>
-                <meta property="og:title" content={siteTitle}/>
-                <meta property="og:image" content={siteImage}/>
-            </Helmet>
-            <section className="post-details-area pt-60 pb-30">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xl-8 col-lg-8">
-                            {isMetaLoading && <NewsDetailsSkeleton/>}
-                            {!isMetaLoading && <PostDetailsContent metaInfo={metaInfo?.news}/>}
-                        </div>
-                        <div className="col-xl-4 col-lg-4">
-                            <div className="widget mb-40">
+    if (!isMetaLoading)
+        return (
+            <>
+                <HeaderMeta
+                    title={siteName}
+                    description={truncateString(metaInfo?.news?.news, 150)}
+                    keywords={metaKeywordGen(metaInfo?.news?.tags)}
+                    ogImage={siteImage}
+                />
+
+                <section className="post-details-area pt-60 pb-30">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xl-8 col-lg-8">
+                                {isMetaLoading && <NewsDetailsSkeleton/>}
+                                {!isMetaLoading && <PostDetailsContent metaInfo={metaInfo?.news}/>}
+                            </div>
+                            <div className="col-xl-4 col-lg-4">
+                                <div className="widget mb-40">
                                 <Link to="#">
                                     <img src={useInternalLink(metaAd6?.advertisement)} alt=""/>
                                 </Link>
@@ -73,16 +75,19 @@ function NewsDetails() {
                                 <PopularNews category_slug={metaInfo?.news?.category?.slug}/>
                             </div>
                             <SubscriptionNewsLatter/>
-                            <div className="widget widget-border mb-40">
-                                <PopularTags tag={`ALL`}/>
-                            </div>
+                                <div className="widget widget-border mb-40">
+                                    <PopularTags tag={`ALL`}/>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </>
-    );
+                </section>
+            </>
+        );
+    else {
+        return <Loading/>
+    }
 }
 
 export default NewsDetails;

@@ -1,14 +1,10 @@
-import React, {createRef, useEffect} from 'react';
+import React from 'react';
 import moment from "moment";
 import {global} from "../../library/config.js";
 import {Link} from "react-router-dom";
 import RelatedNews from "./RelatedNews.jsx";
-import {FacebookProvider, Comments} from 'react-facebook';
-import SFacebookPostShare from "../SocialShare/FacebookShare.jsx";
-import TwitterShare from "../SocialShare/TwitterShare.jsx";
-import LinkedinShare from "../SocialShare/LinkedinShare.jsx";
+import {Comments, FacebookProvider} from 'react-facebook';
 import {truncateString, useInternalLink} from "../../library/helper.js";
-import WhatsappShare from "../SocialShare/WhatsappShare.jsx";
 import Sharethis from "../SocialShare/sharethis.jsx";
 
 function PostDetailsContent({metaInfo}) {
