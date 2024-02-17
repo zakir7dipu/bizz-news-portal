@@ -1,7 +1,8 @@
 import React from 'react';
 import {InlineShareButtons} from 'sharethis-reactjs';
 
-function Sharethis({url, image, description, title}) {
+function Sharethis({url, image, thumb, description, title}) {
+    const thumbnail = thumb?thumb:image;
     return (
         <InlineShareButtons
             config={{
@@ -28,12 +29,12 @@ function Sharethis({url, image, description, title}) {
 
                 min_count: 10,                    // (threshold for total share count to be displayed)
                 url: url, // (defaults to current url)
-                image: image,  // (defaults to og:image or twitter:image)
+                image: thumbnail,  // (defaults to og:image or twitter:image)
                 description: description,       // (defaults to og:description or twitter:description)
                 title: title,            // (defaults to og:title or twitter:title)
-                message: 'custom email text',     // (only for email sharing)
-                subject: 'custom email subject',  // (only for email sharing)
-                username: 'custom twitter handle' // (only for twitter sharing)
+                message: title,     // (only for email sharing)
+                subject: title,  // (only for email sharing)
+                username: title // (only for twitter sharing)
             }}
         />
     );

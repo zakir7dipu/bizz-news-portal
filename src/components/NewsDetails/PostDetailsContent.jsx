@@ -36,6 +36,7 @@ function PostDetailsContent({metaInfo}) {
                     {/*<WhatsappShare title={metaInfo?.title}/>*/}
                     <Sharethis url={window.location.href}
                                image={useInternalLink(metaInfo?.banner)}
+                               thumb={useInternalLink(metaInfo?.thumbnail)}
                                description={truncateString(metaInfo?.news, 120)}
                                title={metaInfo?.title}
                     />

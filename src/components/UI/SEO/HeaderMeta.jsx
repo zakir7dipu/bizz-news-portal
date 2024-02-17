@@ -16,8 +16,8 @@ function HeaderMeta({title, description, keywords, ogImage}) {
 
     useEffect(() => {
         setSiteName(`${systemInfo?.name} | ${title}`)
-        setSiteFavicon(`/${systemInfo?.icon}`)
-        setSiteLogo(`/${systemInfo?.logo}`)
+        setSiteFavicon(`${systemInfo?.icon}`)
+        setSiteLogo(`${systemInfo?.logo}`)
     }, [systemInfo,title])
 
     return (
@@ -27,11 +27,14 @@ function HeaderMeta({title, description, keywords, ogImage}) {
             <meta name='keywords' content={keywords || ""}/>
             <meta name="author" content="Bizz Solutions PLC"/>
             <meta name='description' content={description || ""}/>
+
+            <meta property="og:URL" content={ogImage ? useInternalLink(ogImage) : useInternalLink(siteLogo)} />
             <meta property="og:type" content={"News"}/>
             <meta property="og:title" content={title || ""}/>
             <meta property="og:description" content={description || ""}/>
             <meta property="og:site_name" content="bizznewsbd.com"/>
             <meta property="og:image" content={ogImage ? useInternalLink(ogImage) : useInternalLink(siteLogo)}/>
+
             <meta name="twitter:creator" content={siteName}/>
             <meta name="twitter:card" content={title || ""}/>
             <meta name="twitter:title" content={title || ""}/>

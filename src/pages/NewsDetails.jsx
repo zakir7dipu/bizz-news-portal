@@ -41,10 +41,15 @@ function NewsDetails() {
     }, [slug]);
 
     useEffect(() => {
-        if (metaInfo?.news) {
-            setSiteName(metaInfo?.news?.title)
-            setSiteTitle(metaInfo?.news?.title)
-            setSiteImage(useInternalLink(metaInfo?.news?.banner))
+        const newsinfo = metaInfo?.news
+        if (newsinfo) {
+            setSiteName(newsinfo?.title)
+            setSiteTitle(newsinfo?.title)
+            if(!newsinfo?.thumbnail) {
+                setSiteImage(metaInfo?.news?.banner)
+            } else {
+                setSiteImage(metaInfo?.news?.thumbnail)
+            }
         }
     }, [metaInfo])
 
