@@ -53,7 +53,7 @@ function NewsSm({slug}) {
                                     <ul>
                                         <li>
                                             <i className="fas fa-calendar-alt"></i>
-                                            <span>{moment(item?.updated_at).format('LL')}</span>
+                                            <span>{moment(item?.created_at).format('LL')}</span>
                                         </li>
                                     </ul>
                                 </div>

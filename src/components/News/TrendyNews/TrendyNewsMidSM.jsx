@@ -26,7 +26,7 @@ function TrendyNewsMidSm({newsData}) {
                                     <ul>
                                         <li>
                                             <i className="fas fa-calendar-alt"></i>
-                                            <span>{moment(tnms.updated_at).format('LL')}</span>
+                                            <span>{moment(tnms.created_at).format('LL')}</span>
                                         </li>
                                     </ul>
                                 </div>

@@ -51,7 +51,7 @@ function PageHighlightedNews({categorySlug}) {
                                 <ul>
                                     <li>
                                         <i className="fas fa-calendar-alt"></i>
-                                        <span>{moment(highlighted?.updated_at).format('LL')}</span>
+                                        <span>{moment(highlighted?.created_at).format('LL')}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -77,7 +77,7 @@ function PageHighlightedNews({categorySlug}) {
                                         <ul>
                                             <li>
                                                 <i className="fas fa-calendar-alt"></i>
-                                                <span>{moment(item.updated_at).format('LL')}</span>
+                                                <span>{moment(item.created_at).format('LL')}</span>
                                             </li>
                                         </ul>
                                     </div>

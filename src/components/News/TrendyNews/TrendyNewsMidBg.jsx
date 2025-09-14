@@ -29,7 +29,7 @@ function TrendyNewsMidBg({newsData}) {
                                     <ul>
                                         <li>
                                             <i className="fas fa-calendar-alt"></i>
-                                            <span>{moment(tnmbg.updated_at).format('LL')}</span>
+                                            <span>{moment(tnmbg.created_at).format('LL')}</span>
                                         </li>
                                     </ul>
                                 </div>

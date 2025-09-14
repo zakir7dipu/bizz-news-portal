@@ -6,7 +6,7 @@ import moment from "moment/moment.js";
 const {base_path, default_token} = global.config;
 
 function NewsBlock({metaInfo}) {
-    const {slug, title, banner, category, updated_at} = metaInfo
+    const {slug, title, banner, category, created_at} = metaInfo
     return (
         <div className="post__small mb-20">
             <div className="post__small-thumb f-left">
@@ -26,7 +26,7 @@ function NewsBlock({metaInfo}) {
                     <ul>
                         <li>
                             <i className="fas fa-calendar-alt"></i>
-                            <span>{moment(updated_at).format('LL')}</span>
+                            <span>{moment(created_at).format('LL')}</span>
                         </li>
                     </ul>
                 </div>

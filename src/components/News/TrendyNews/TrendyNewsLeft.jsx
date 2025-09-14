@@ -26,7 +26,7 @@ function TrendyNewsLeft({trendyNewsData}) {
                                     <ul>
                                         <li>
                                             <i className="fas fa-calendar-alt"></i>
-                                            <span>{moment(tnl.updated_at).format('LL')}</span>
+                                            <span>{moment(tnl.created_at).format('LL')}</span>
                                         </li>
                                     </ul>
                                 </div>

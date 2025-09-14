@@ -32,7 +32,7 @@ function HeaderMeta({title, description, keywords, ogImage}) {
             <meta property="og:url" content={url}/>
             <meta property="og:title" content={title || ""}/>
             <meta property="og:description" content={description || ""}/>
-            <meta property="og:site_name" content="bizznewsbd.com"/>
+            <meta property="og:site_name" content="Bizz News"/>
             <meta property="og:image" content={image}/>
 
             <meta name="twitter:card" content="summary_large_image"/>

@@ -58,7 +58,7 @@ function NewsDetails() {
             <>
                 <HeaderMeta
                     title={siteName}
-                    description={truncateString(metaInfo?.news?.news, 150)}
+                    description={truncateString(metaInfo?.news?.meta_description, 150)}
                     keywords={metaKeywordGen(metaInfo?.news?.tags)}
                     ogImage={siteImage}
                 />
