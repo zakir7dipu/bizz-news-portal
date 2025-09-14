@@ -10,37 +10,39 @@ function HeaderMeta({title, description, keywords, ogImage}) {
     const [siteFavicon, setSiteFavicon] = useState("");
     const [siteLogo, setSiteLogo] = useState("");
 
-    // useEffect(() => {
-    //     dispatch(getSystemInfo())
-    // }, [dispatch])
-
     useEffect(() => {
         setSiteName(`${systemInfo?.name} | ${title}`)
         setSiteFavicon(`${systemInfo?.icon}`)
         setSiteLogo(`${systemInfo?.logo}`)
-    }, [systemInfo,title])
+    }, [systemInfo, title]);
+
+    const image = ogImage ? useInternalLink(ogImage) : useInternalLink(siteLogo);
+    const favicon = useInternalLink(siteFavicon);
+    const url = typeof window !== "undefined" ? window.location.href : "";
 
     return (
         <Helmet>
             <title>{siteName}</title>
             <meta name="robots" content="index,follow"/>
-            <meta name='keywords' content={keywords || ""}/>
+            <meta name="keywords" content={keywords || ""}/>
             <meta name="author" content="Bizz Solutions PLC"/>
-            <meta name='description' content={description || ""}/>
+            <meta name="description" content={description || ""}/>
 
-            <meta property="og:URL" content={ogImage ? useInternalLink(ogImage) : useInternalLink(siteLogo)} />
-            <meta property="og:type" content={"News"}/>
+            <meta property="og:type" content="article"/>
+            <meta property="og:url" content={url}/>
             <meta property="og:title" content={title || ""}/>
             <meta property="og:description" content={description || ""}/>
             <meta property="og:site_name" content="bizznewsbd.com"/>
-            <meta property="og:image" content={ogImage ? useInternalLink(ogImage) : useInternalLink(siteLogo)}/>
+            <meta property="og:image" content={image}/>
 
-            <meta name="twitter:creator" content={siteName}/>
-            <meta name="twitter:card" content={title || ""}/>
+            <meta name="twitter:card" content="summary_large_image"/>
             <meta name="twitter:title" content={title || ""}/>
-            <link rel="canonical" href={window.location.href}/>
             <meta name="twitter:description" content={description || ""}/>
-            <link rel="icon" type="image/png" href={useInternalLink(siteFavicon)}/>
+            <meta name="twitter:image" content={image}/>
+            <meta name="twitter:creator" content="@bizznewsbd"/>
+
+            <link rel="canonical" href={url}/>
+            <link rel="icon" type="image/png" href={favicon}/>
         </Helmet>
     );
 }
