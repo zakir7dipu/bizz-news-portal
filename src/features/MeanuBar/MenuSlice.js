@@ -6,13 +6,13 @@ const initialData = {
 }
 
 export const menuBarSlice = createSlice({
-    name:"MenuBar",
+    name: "MenuBar",
     initialState: initialData,
     reducers: {
-        extraInfoAction: (state, {payload})=>{
+        extraInfoAction: (state, {payload}) => {
             state.extraInfo = payload
         },
-        searchModelAction:(state, {payload})=>{
+        searchModelAction: (state, {payload}) => {
             state.searchModel = payload
         }
     }

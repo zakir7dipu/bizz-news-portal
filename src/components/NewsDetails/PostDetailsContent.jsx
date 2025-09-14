@@ -9,8 +9,6 @@ import Sharethis from "../SocialShare/sharethis.jsx";
 
 function PostDetailsContent({metaInfo}) {
     const {base_path} = global.config;
-
-
     return (
         <>
             <div className="post-details">
@@ -20,11 +18,11 @@ function PostDetailsContent({metaInfo}) {
                     <ul>
                         <li>
                             <i className="far fa-user-circle"></i>
-                            <span>{metaInfo?.editor?.first_name} {metaInfo?.editor?.last_name}</span>
+                            <span>{metaInfo?.creator?.first_name} {metaInfo?.creator?.last_name}</span>
                         </li>
                         <li>
                             <i className="fas fa-calendar-alt"></i>
-                            <span>{moment(metaInfo?.updated_at).format('LL')}</span>
+                            <span>{moment(metaInfo?.created_at).format('LL')}</span>
                         </li>
                     </ul>
                 </div>

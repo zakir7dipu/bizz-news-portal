@@ -14,7 +14,7 @@ const initialData = {
     errorMessage: null
 }
 
-export const getAllCategories = createAsyncThunk("category/getAllCategories", async (arg,{rejectWithValue}) => {
+export const getAllCategories = createAsyncThunk("category/getAllCategories", async (arg, {rejectWithValue}) => {
     try {
         const autAccess = {
             token: default_token
@@ -32,9 +32,9 @@ export const categorySlice = createSlice({
     initialState: initialData,
     reducers: {
         showAllCategories: (sate) => sate,
-        showSingleCategory: (state, {payload})=> {
+        showSingleCategory: (state, {payload}) => {
             console.log(state)
-            let category = state.categories.filter(cat=>{
+            let category = state.categories.filter(cat => {
                 // cat.slug == payload
                 console.log(cat)
             })
@@ -49,7 +49,7 @@ export const categorySlice = createSlice({
         [getAllCategories.fulfilled]: (state, {payload}) => {
             state.isLoading = false
             state.categories = payload.categories
-            state.showHomeCategories = payload.categories.filter(cat=>cat.home_page === 1)
+            state.showHomeCategories = payload.categories.filter(cat => cat.home_page === 1)
         },
         [getAllCategories.rejected]: (state, {payload}) => {
             state.isLoading = false

@@ -18,7 +18,7 @@ const initialData = {
 
 export const getNews = createAsyncThunk("news/getNews", async (data, {rejectWithValue}) => {
     try {
-        const {paginate, page,excludeSpace, categorySlug, excludeNews,tagName,search} = data;
+        const {paginate, page, excludeSpace, categorySlug, excludeNews, tagName, search} = data;
         const autAccess = {
             token: default_token,
             category_slug: categorySlug,
@@ -39,7 +39,7 @@ export const getNews = createAsyncThunk("news/getNews", async (data, {rejectWith
 
 export const getMoreNews = createAsyncThunk("news/getMoreNews", async (data, {rejectWithValue}) => {
     try {
-        const {paginate, page, excludeSpace ,categorySlug, excludeNews,tagName,search} = data;
+        const {paginate, page, excludeSpace, categorySlug, excludeNews, tagName, search} = data;
         const autAccess = {
             token: default_token,
             category_slug: categorySlug,
@@ -94,7 +94,7 @@ export const newsSlice = createSlice({
             // array concatenation
             let allNews = state.news.concat(payload.news)
             // unique object
-            state.news = [...new Map(allNews.map((item)=>[item["id"], item])).values()]
+            state.news = [...new Map(allNews.map((item) => [item["id"], item])).values()]
             state.total_rows = payload.total_rows
             state.total_pages = payload.pages
         },

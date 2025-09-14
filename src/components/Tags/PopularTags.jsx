@@ -12,10 +12,11 @@ function PopularTags({tag}) {
     return (
         <>
             <h3 className="widget-title">Popular Tags</h3>
-            <div className="tagcloud">
+            <div className="tagcloud" style={{maxHeight: '600px', overflow: 'auto'}}>
                 {!isLoading && tags.map(item => {
                         return (
-                            <Link to={`/tags/${item?.slug}/news`} className={item?.slug==tag?'active':''}  key={item?.id}>{item?.name}</Link>
+                            <Link to={`/tags/${item?.slug}/news`} className={item?.slug == tag ? 'active' : ''}
+                                  key={item?.id}>{item?.name}</Link>
                         )
                     }
                 )}
